@@ -22,12 +22,11 @@ body {
 
     #logo h5{
             padding-left: 90% ;
-            font-size: 14px;
     }
 
    #main {
         text-align: center;
-    min-height: 600px;
+    min-height: 700px;
     margin: 0px;
     padding: 0px;
     display: -webkit-flex;
@@ -36,7 +35,7 @@ body {
             flex-flow: row;
     }
   
-   #main > main {
+   #main main {
     margin: 4px;
     padding: 5px;
     border: 1px solid #cccc33;
@@ -48,7 +47,7 @@ body {
             order: 2;
     }
    
-   #main > nav {
+   #main nav {
     margin: 4px;
     padding: 5px;
     border: 1px solid #8888bb;
@@ -75,7 +74,7 @@ body {
         text-decoration: none;
     }
 
-   #main > aside {
+   #main aside {
     margin: 4px;
     padding: 5px;
     border: 1px solid #8888bb;
@@ -97,14 +96,14 @@ aside h5{
     display: block;
     margin: 4px;
     padding: 5px;
-    min-height: 100px;
+    min-height: 80px;
     border: 1px solid #eebb55;
     border-radius: 7pt;
     background: #ffeebb;
     }
 
     label{
-            font-size: 14px;
+            font-size: 18px;
     }
 
 #welcome{
