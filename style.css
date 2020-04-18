@@ -1,241 +1,222 @@
 body {
-    font: 24px Helvetica;
-    background: #999999;
-    min-height: 100vh;
-   }
-
-
-   @media (min-width: 500px) {
-        body {
-            display: grid;   
+        font: 24px Helvetica;
+        background: #999999;
+        min-height: 100vh;
+       }
+    
+    
+       @media (min-width: 500px) {
+            body {
+                display: grid;   
+            }
         }
-    }
-
-
-   #logo img{
-    float: left;
-    }
-
-    #logo{
-            text-align: left;
-    }
-
-    #logo h5{
-            padding-left: 90% ;
-    }
-
-   #main {
-        text-align: center;
-    min-height: 700px;
-    margin: 0px;
-    padding: 0px;
-    display: -webkit-flex;
-    display:         flex;
-    -webkit-flex-flow: row;
-            flex-flow: row;
-    }
-  
-   #main main {
-    margin: 4px;
-    padding: 5px;
-    border: 1px solid #cccc33;
-    border-radius: 7pt;
-    background: #dddd88;
-    -webkit-flex: 3 1 60%;
-            flex: 3 1 60%;
-    -webkit-order: 2;
-            order: 2;
-    }
-   
-   #main nav {
-    margin: 4px;
-    padding: 5px;
-    border: 1px solid #8888bb;
-    border-radius: 7pt;
-    background: #58586d;
-    -webkit-flex: 1 6 10%;
-            flex: 1 6 10%;
-    -webkit-order: 1;
-            order: 1;
-    }
-
-    ul {
-        text-align: center;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-    }
-   
-    li a {
-        display: block;
-        color: white;
-        padding: 8px 16px;
-        text-decoration: none;
-    }
-
-   #main aside {
-    margin: 4px;
-    padding: 5px;
-    border: 1px solid #8888bb;
-    border-radius: 7pt;
-    background: #58586d;
-    -webkit-flex: 1 6 10%;
-            flex: 1 6 10%;
-    -webkit-order: 3;
-            order: 3;
-    }
-
-aside h5{
-   display: block;
-   color: white;
-   padding: 8px 16px;   
-}
-
-   header {
-    display: block;
-    margin: 4px;
-    padding: 5px;
-    min-height: 80px;
-    border: 1px solid #eebb55;
-    border-radius: 7pt;
-    background: #ffeebb;
-    }
-
-    label{
-            font-size: 18px;
-    }
-
-#welcome{
-        margin-top: 10%;
-}
-
-#welcome img{
-        height: 200px;
-        width: 50%;
-}
-    footer{
-    text-align: center;
-    display: block;
-    margin: 4px;
-    padding: 5px;
-    min-height: 10px;
-    border: 1px solid #eebb55;
-    border-radius: 7pt;
-    background: #ffeebb;
-    }
-
-    #register{
-        margin-top: 5%;
+    
+    
+       #logo img{
+        float: left;
+        }
+    
+        #logo{
+                text-align: left;
+        }
+    
+        #logo h5{
+                padding-left: 90% ;
+        }
+    
+       #main {
+            text-align: center;
+        min-height: 700px;
+        margin: 0px;
+        padding: 0px;
+        display: -webkit-flex;
+        display:         flex;
+        -webkit-flex-flow: row;
+                flex-flow: row;
+        }
       
+       #main main {
+        margin: 4px;
+        padding: 5px;
+        border: 1px solid #cccc33;
+        border-radius: 7pt;
+        background: #dddd88;
+        -webkit-flex: 3 1 60%;
+                flex: 3 1 60%;
+        -webkit-order: 2;
+                order: 2;
+        }
+       
+       #main nav {
+        margin: 4px;
+        padding: 5px;
+        border: 1px solid #8888bb;
+        border-radius: 7pt;
+        background: #58586d;
+        -webkit-flex: 1 6 10%;
+                flex: 1 6 10%;
+        -webkit-order: 1;
+                order: 1;
+        }
+       
+        li a {
+            display: block;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+    
+       #main aside {
+        margin: 4px;
+        padding: 5px;
+        border: 1px solid #8888bb;
+        border-radius: 7pt;
+        background: #58586d;
+        -webkit-flex: 1 6 10%;
+                flex: 1 6 10%;
+        -webkit-order: 3;
+                order: 3;
+        }
+    
+    aside h5{
+       display: block;
+       color: white;
+       padding: 8px 16px;   
     }
-
-  /*  #register #registrationForm{
+    
+       header {
+        display: block;
+        margin: 4px;
+        padding: 5px;
+        min-height: 80px;
+        border: 1px solid #eebb55;
+        border-radius: 7pt;
+        background: #ffeebb;
+        }
+    
+        label{
+                font-size: 18px;
+        }
+    
+    #welcome{
+            margin-top: 10%;
+    }
+    
+    #welcome img{
+            height: 200px;
+            width: 50%;
+    }
+        footer{
+        text-align: center;
+        display: block;
+        margin: 4px;
+        padding: 5px;
+        min-height: 10px;
+        border: 1px solid #eebb55;
+        border-radius: 7pt;
+        background: #ffeebb;
+        }
+    
+        #register{
+            margin-top: 5%;
+          
+        }
+    
+      /*  #register #registrationForm{
+                text-align: left;
+                padding-left: 10%;
+        }
+        #sign{
+                margin-left: 40%;
+        }*/
+    
+        #login{
+            margin-top: 5%;  
+        }
+        
+        #about{
+             width: 50%;   
+        }
+    
+    
+         ul {
+            padding: 0;
+            list-style-type: none;
+        }
+        
+        ul li {
+            box-sizing: border-box;
+            width: 8em;
+            height: 3em;
+            font-size: 20px;
+            border-radius: 0.5em;
+            margin: 0.5em;
+            box-shadow: 0 0 1em rgba(0,0,0,0.2);
+            color: white;
+            font-family: sans-serif;
+            text-transform: capitalize;
+            line-height: 3em;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        ul li:nth-child(odd) {
+            background: linear-gradient(to right, orange, tomato);
             text-align: left;
             padding-left: 10%;
-    }
-
-    #sign{
-            margin-left: 40%;
-    }*/
-
-    #login{
-        margin-top: 5%;  
-    }
+            transform: perspective(500px) rotateY(45deg);
+        }
+        
+        ul li:nth-child(even) {
+            background: linear-gradient(to left, orange, tomato);
+            text-align: right;
+            padding-right: 10%;
+            transform: perspective(500px) rotateY(-45deg);
+        }
+        
+        ul li:nth-child(odd):hover {
+            transform: perspective(200px) rotateY(45deg);
+            padding-left: 5%;
+        }
+        
+        ul li:nth-child(even):hover {
+            transform: perspective(200px) rotateY(-45deg);
+            padding-right: 5%;
+        }
+        
+        .buttonWelcom{
+            line-height: 1;
+            margin: 20px;
+            padding: 1.0em 2.8em;
+            border-radius: 0.6em;
+            text-decoration: none;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            background: linear-gradient(to right, orange, tomato);
+            border-color: orange;
+            color:white;
+            box-shadow: 0 0 40px 40px tomato inset, 0 0 0 0 orange;
+            transition: all 150ms ease-in-out;
+        }
     
-  
-
-    #about{
-         width: 50%;   
-    }
-
-
-  /* ul */
+        .buttonWelcom:hover {
+          box-shadow: 0 0 10px 0 tomato  inset, 0 0 10px 4px tomato ;
+        }
     
-
-ul {
-        padding: 0;
-        list-style-type: none;
-    }
-    
-    ul li {
-        box-sizing: border-box;
-        width: 8em;
-        height: 3em;
-        font-size: 20px;
-        border-radius: 0.5em;
-        margin: 0.5em;
-        box-shadow: 0 0 1em rgba(0,0,0,0.2);
-        color: white;
-        font-family: sans-serif;
-        text-transform: capitalize;
-        line-height: 3em;
-        transition: 0.3s;
-        cursor: pointer;
-    }
-    
-    ul li:nth-child(odd) {
-        background: linear-gradient(to right, orange, tomato);
-        text-align: left;
-        padding-left: 10%;
-        transform: perspective(500px) rotateY(45deg);
-    }
-    
-    ul li:nth-child(even) {
-        background: linear-gradient(to left, orange, tomato);
-        text-align: right;
-        padding-right: 10%;
-        transform: perspective(500px) rotateY(-45deg);
-    }
-    
-    ul li:nth-child(odd):hover {
-        transform: perspective(200px) rotateY(45deg);
-        padding-left: 5%;
-    }
-    
-    ul li:nth-child(even):hover {
-        transform: perspective(200px) rotateY(-45deg);
-        padding-right: 5%;
-    }
-    
-    [id^=buttonWelcom]{
-        line-height: 1;
-        margin: 20px;
-        padding: 1.0em 2.8em;
-        border-radius: 0.6em;
-        text-decoration: none;
-        text-align: center;
-        text-transform: uppercase;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 700;
-        font-size: 1rem;
-        background: linear-gradient(to right, orange, tomato);
-        border-color: orange;
-        color:white;
-        box-shadow: 0 0 40px 40px tomato inset, 0 0 0 0 orange;
-        transition: all 150ms ease-in-out;
-    }
-
-    [id^=buttonWelcom]:hover {
-      box-shadow: 0 0 10px 0 tomato  inset, 0 0 10px 4px tomato ;
-    }
-
-    [id^=buttonRegular]{
-        text-transform: uppercase;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 700;
-        font-size: 1rem;
-        border-color: #343738;
-        color:white;
-        box-shadow: 0 0 40px 40px tomato inset, 0 0 0 0 #3498db;
-        transition: all 150ms ease-in-out;
-        border-radius: 0.6em;
-        border-color: orange;
-
-
-    }
-
-
+        .buttonRegular{
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            border-color: #343738;
+            color:white;
+            box-shadow: 0 0 40px 40px tomato inset, 0 0 0 0 #3498db;
+            transition: all 150ms ease-in-out;
+            border-radius: 0.6em;
+            border-color: orange;
     
     
-    
+        }
