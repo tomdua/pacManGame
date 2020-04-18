@@ -134,12 +134,11 @@ $("#datepicker").datepicker({
 
     }
 });
+
 function restFunction() {
     document.getElementById("registrationForm").reset();
   }
-  function restFunction1() {
-    document.getElementById("loginForm").reset();
-  }
+
 
 
 /*function addDateOptions() {
