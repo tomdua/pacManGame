@@ -198,7 +198,43 @@ ul {
         transform: perspective(200px) rotateY(-45deg);
         padding-right: 5%;
     }
+    
+    [id^=buttonWelcom]{
+        line-height: 1;
+        margin: 20px;
+        padding: 1.0em 2.8em;
+        border-radius: 0.6em;
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        background: linear-gradient(to right, orange, tomato);
+        border-color: orange;
+        color:white;
+        box-shadow: 0 0 40px 40px tomato inset, 0 0 0 0 orange;
+        transition: all 150ms ease-in-out;
+    }
 
+    [id^=buttonWelcom]:hover {
+      box-shadow: 0 0 10px 0 tomato  inset, 0 0 10px 4px tomato ;
+    }
+
+    [id^=buttonRegular]{
+        text-transform: uppercase;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        border-color: #343738;
+        color:white;
+        box-shadow: 0 0 40px 40px tomato inset, 0 0 0 0 #3498db;
+        transition: all 150ms ease-in-out;
+        border-radius: 0.6em;
+        border-color: orange;
+
+
+    }
 
 
     

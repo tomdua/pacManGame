@@ -48,9 +48,9 @@
       <div id="welcome" style="display:block">
         <img src="img/welcome.png" />
         <h2>Choose one of the following:</h2>
-          <button class="btn draw-border" style=""
+          <button   type="button" id="buttonWelcom" class="btn draw-border"
             onclick="return show('register','login','about','welcome');">Registration</button>
-          <button class="btn draw-border" onclick="return show('login','about','welcome','register');">Login</button>
+          <button type="button" id="buttonWelcom" class="btn draw-border" onclick="return show('login','about','welcome','register');">Login</button>
       </div>
 
       <div id="register" style="display:none">
@@ -133,8 +133,8 @@
             <input type="hidden" id="datepicker" />
 
           </div>
-          <input id="sign" type="submit" value="Sign Up" />
-          <input type="button" onclick="restFunction()" value="Reset form">
+          <input id="buttonRegular" type="button" id="sign" type="submit" value="Sign Up" />
+          <input id="buttonRegular" type="button" onclick="restFunction()" value="Reset form">
 
         </form>
       </div>
@@ -153,8 +153,8 @@
         <input id="passwordLogin" type="password" placeholder="Enter Password">
         <br>
         <br>
-        <input type="button" onclick="validateLogin()" value="Login">
-        <input type="button" onclick="restFunction1()" value="Reset form">
+        <input id="buttonRegular" type="button" onclick="validateLogin()" value="Login">
+        <input id="buttonRegular"type="button" onclick="restFunction1()" value="Reset form">
         </form>
       </div>
 
