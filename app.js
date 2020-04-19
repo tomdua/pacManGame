@@ -11,11 +11,12 @@ var user = {userName: "p", password: "p"};// firstName:"Default", lastName:"User
     users.push(user);
 
 
-function show(shown, hidden1, hidden2, hidden3){
+function show(shown, hidden1, hidden2, hidden3, hidden4){
 	document.getElementById(shown).style.display='block';
 	document.getElementById(hidden1).style.display='none';
 	document.getElementById(hidden2).style.display='none';
 	document.getElementById(hidden3).style.display='none';
+	document.getElementById(hidden4).style.display='none';
 	return false;
   }
 
