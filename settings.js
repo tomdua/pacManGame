@@ -67,7 +67,28 @@ messages: {
     monstersNum:{
         required: "You must enter a number",
         range: "Monsters number must be between 60 and 90"
-    },
-    
+    }
 },   
+submitHandler: function(form) {
+    var firstBall = document.getElementById("5BallColor");
+    var secondtBall = document.getElementById("15BallColor");
+    var thirdBall = document.getElementById("25BallColor");
+      if (firstBall.value == secondtBall.value ||
+        firstBall.value == thirdBall.value ||
+        secondtBall.value == thirdBall.value) {
+        alert("You need to choose different colors for different balls points type!");
+    }
+    else {
+        updateSttings();
+    }
+    return false;
+}
 });
+
+function updateSttings() {
+   
+}
+
+function randomSettings() {     
+    
+}

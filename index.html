@@ -118,52 +118,24 @@
             <label><b>Choose type and color for balls:</b></label>
             <br>
                 <label><b>5 Points:</b></label>
-                <select id="firstColorBalls" name="firstColorBalls">
-                  <option value="#F3E5AB">Vanila</option>
-                  <option value="#C68E17">Caramel</option>
-                  <option value="#966F33">Wood</option>
-                  <option value="#C36241">Rust</option>
-                  <option value="#6F4E37">Coffee</option>
-                  <option value="#C85A17">Chocolate</option>
-                  <option value="white">White</option>
-                  <option value="black">Black</option>
-              </select>
+                <input id="5BallColor" name="5BallColor" type="color" value="#6F4E37">
+               <br>
                 <label><b>15 Points:</b></label>
-                <select id="secondColorBalls" name="secondColorBalls">
-                  <option value="#F3E5AB">Vanila</option>
-                  <option value="#C68E17">Caramel</option>
-                  <option value="#966F33">Wood</option>
-                  <option value="#C36241">Rust</option>
-                  <option value="#6F4E37">Coffee</option>
-                  <option value="#C85A17">Chocolate</option>
-                  <option value="white">White</option>
-                  <option value="black">Black</option>
-              </select>                
-              <label><b>25 Points:</b></label>        
-            <select id="thirdColorBalls" name="thirdColorBalls">
-                <option value="#F3E5AB">Vanila</option>
-                <option value="#C68E17">Caramel</option>
-                <option value="#966F33">Wood</option>
-                <option value="#C36241">Rust</option>
-                <option value="#6F4E37">Coffee</option>
-                <option value="#C85A17">Chocolate</option>
-                <option value="white">White</option>
-                <option value="black">Black</option>
-            </select>
+                <input id="15BallColor" name="15BallColor" type="color" value="#6F4E37">
+                <br>
+                <label><b>25 Points:</b></label>        
+                <input id="25BallColor" name="25BallColor" type="color" value="#6F4E37">
             <br>
             <br>
-            <input id="timeGame" name="timeGame" type="text" placeholder="Time To Play">
+            <input id="timeGame" name="timeGame" type="text" placeholder="Time To Play(60 min)">
             <br>
             <input id="monstersNum" name="monstersNum" type="text" placeholder="Monsters Number">
             <br>
             <br>
-            <input type="button" value="Start Play!" class="buttonRegular" onclick="return show('game','welcome','register','setting');"/>
-            <input type="button" class="buttonRegular" onclick="randomGameSettings()" value="Random Settings">
+            <input type="submit" value="Start Play!" class="buttonRegular" onclick="return show('game','welcome','register','setting');"/>
+            <input type="button" class="buttonRegular" onclick="randomSettings()" value="Random Settings">
         </form>
       </div>
-
-
-
 
 
       <div id="game" style="display:none">
