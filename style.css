@@ -101,35 +101,23 @@ aside h5{
       height: 200px;
       width: 50%;
 }
-  footer{
+  
+footer{
 padding-top: 20px;       
 text-align: center;
-  display: block;
-  margin: 4px;
-  min-height: 10px;
-  border-radius: 7pt;
- 
-    background-color: rgb(39, 40, 41);
-  border: 1px solid #ffffff;
- background-position: bottom;
- color: rgb(255, 255, 255);
+margin: 4px;
+border-radius: 7pt;
+background-color: rgb(39, 40, 41);
+border: 1px solid #ffffff;
+background-position: bottom;
+color: rgb(255, 255, 255);
   
   }
-
-/*background-image: url(./img/logo6.jpg);*/
 
   #register{
       margin-top: 5%;
     
   }
-
-/*  #register #registrationForm{
-          text-align: left;
-          padding-left: 10%;
-  }
-  #sign{
-          margin-left: 40%;
-  }*/
 
   #login{
       margin-top: 5%;  
@@ -218,8 +206,6 @@ text-align: center;
       transition: all 150ms ease-in-out;
       border-radius: 0.6em;
       border-color: orange;
-
-
   }
 
 

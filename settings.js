@@ -1,4 +1,4 @@
-$("#settingForm").validate({
+$("#settingsForm").validate({
     rules: {
     rightKey: {
         required: true,

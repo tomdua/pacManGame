@@ -75,7 +75,7 @@
           <br>
           <input type="text" id="userEmail" name="userEmail" placeholder="Enter Email">
           <br>
-          <input type="text" id="date"  onfocus="(this.type='date')" placeholder="Date of birth" >
+          <input type="text" id="date"  onfocus="(this.type='date')" placeholder="Date Of Birth" >
           <br>
           <br>
           <input class="buttonRegular" type="submit" id="sign" value="Sign Up" onclick="" />
@@ -103,20 +103,19 @@
       <div id="setting" style="display:none">
         <h2>Game Settings:</h2>
         <br>
-        
             <form id="settingsForm" action="">
-            <input id="rightKey" name="rightKey" type="text" placeholder="Enter key for right move">
+            <input id="rightKey" name="rightKey" type="text" placeholder="Right Key">
             <br>       
-            <input id="leftKey" name="leftKey" type="text" placeholder="Enter key for left move">               
+            <input id="leftKey" name="leftKey" type="text" placeholder="Left Key">               
             <br>                
-            <input id="upKey" name="upKey" type="text" placeholder="Enter key for up move">
+            <input id="upKey" name="upKey" type="text" placeholder="Up Key">
             <br>
-            <input id="downKey" name="downKey" type="text" placeholder="Enter key for down move">               
+            <input id="downKey" name="downKey" type="text" placeholder="Down Key">               
             <br>
-            <input id="ballsNum" name="ballsNum" type="text" placeholder="Enter Balls numbers">
+            <input id="ballsNum" name="ballsNum" type="text" placeholder="Balls Number">
             <br>
             <br>
-            <label><b>Choose type and color for Balls:</b></label>
+            <label><b>Choose type and color for balls:</b></label>
             <br>
                 <label><b>5 Points:</b></label>
                 <select id="firstColorBalls" name="firstColorBalls">
@@ -153,13 +152,13 @@
             </select>
             <br>
             <br>
-            <input id="timeGame" name="timeGame" type="text" placeholder="Enter time to play">
+            <input id="timeGame" name="timeGame" type="text" placeholder="Time To Play">
             <br>
-            <input id="monstersNum" name="monstersNum" type="text" placeholder="Enter monsters Number">
+            <input id="monstersNum" name="monstersNum" type="text" placeholder="Monsters Number">
             <br>
             <br>
             <input type="button" value="Start Play!" class="buttonRegular" onclick="return show('game','welcome','register','setting');"/>
-            <input type="button" class="buttonRegular" onclick="randomGameSettingsFunction()" value="Random Settings">
+            <input type="button" class="buttonRegular" onclick="randomGameSettings()" value="Random Settings">
         </form>
       </div>
 
@@ -195,9 +194,9 @@
       <h5>Lets Play!</h5>
     </aside>
   </div>
-  <footer>Almog Sarafian - almogsa@post.bgu.ac.il , Tom Duany - tomdu@post.bgu.ac.il </footer>
+  <footer>Almog - almogsa@post.bgu.ac.il  &   Tom - tomdu@post.bgu.ac.il </footer>
   <script type="text/javascript" src="register_login.js"></script>
-  <script type="text/javascript" src="setting.js"></script>
+  <script type="text/javascript" src="settings.js"></script>
 </body>
 
 </html>

@@ -121,13 +121,11 @@ showOn: "button",
 buttonImage: "http://jqueryui.com/demos/images/calendar.gif",
 buttonImageOnly: true,
 onSelect: function(dateText, inst) {
-//dateText comes in as MM/DD/YY
 var datePieces = dateText.split('/');
 var month = datePieces[0];
 var day = datePieces[1];
 var year = datePieces[2];
-//define select option values for
-//corresponding element
+
 $('select#month').val(month);
 $('select#day').val(day);
 $('select#year').val(year);
