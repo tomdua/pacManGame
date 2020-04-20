@@ -19,10 +19,12 @@
 <body>
   <header>
     <div id="logo">
-      <img src="img/logo5.png" style="height: 60px; margin-top: 20px; " />
-      Designed by
-     
-      Almog Sarafian & Tom Duany
+            <img src="./img/logo5.png" alt="" style="height: 50px; float: left;">
+            
+        Designed by
+        <br>
+        Almog Sarafian & Tom Duany
+      
     </div>
   </header>
 
@@ -55,7 +57,7 @@
 
       
       <div id="register" style="display:none">
-        <h3><b>Register</b></h3>
+        <h2><b>Register</b></h2>
         <img src="img/register.png" />
         <br>
         <br>
@@ -75,14 +77,14 @@
           <br>
           <input type="text" id="date"  onfocus="(this.type='date')" placeholder="Date of birth" >
           <br>
-          
+          <br>
           <input class="buttonRegular" type="submit" id="sign" value="Sign Up" onclick="" />
           <input class="buttonRegular" type="button" onclick="restFunction()" value="Reset Form">
         </form>
       </div>
 
       <div id="login" style="display:none">
-        <h3><b>Log In</b></h3>
+        <h2><b>Log In</b></h2>
         <img src="img/login.png" />
         <br>
         <br>
@@ -99,66 +101,47 @@
 
 
       <div id="setting" style="display:none">
-        <h1>Game Settings:</h1>
-        <p>
-            For starting your game please choose your favorite settings</p>
+        <h2>Game Settings:</h2>
+        <br>
+        
             <form id="settingsForm" action="">
-            <label><b>Right Key:</b></label>
-            <input id="rightKey" name="rightKey" type="text" style="margin-left: 33.5px" placeholder="Enter key for right move">
-            </br>       
-            <label  style="margin-left: 5px"><b>Left Key:</b></label>
-            <input id="leftKey" name="leftKey" type="text" style="margin-left: 40px" placeholder="Enter key for left move">               
-            </br>                
-            <label for="upKey" style="margin-left: 5px"><b>Up Key:</b></label>
-            <input id="upKey" name="upKey" type="text" style="margin-left: 53px" placeholder="Enter key for up move">
-            </br>
-            <label for="downKey" style="margin-left: 5px"><b>Down Key:</b></label>
-            <input id="downKey" name="downKey" type="text" style="margin-left: 34px" placeholder="Enter key for down move">               
-            </br>
-            </br>
-            <label style="margin-left: 5px" for="ballsNum"><b>Balls Number:</b></label>
-            <input id="ballsNum" name="ballsNum" type="text" style="margin-left: 7px" placeholder="Enter Balls Number">
-            </br>
-            </br>
-            <label style="margin-left: 5px"><b>Choose type and color for Balls:</b></label></br>
-            <select id="firstTypeBalls" name="firstTypeBalls" style="margin-left: 5px">
-                <option value="5">5 Points</option>
-                <option value="15">15 Points</option>
-                <option value="25">25 Points</option>
-            </select>
-            <select id="firstColorBalls" name="firstColorBalls" style="margin-left: 5px">
-                <option value="#F3E5AB">Vanila</option>
-                <option value="#C68E17">Caramel</option>
-                <option value="#966F33">Wood</option>
-                <option value="#C36241">Rust</option>
-                <option value="#6F4E37">Coffee</option>
-                <option value="#C85A17">Chocolate</option>
-                <option value="white">White</option>
-                <option value="black">Black</option>
-            </select>
-            </br>
-            <select id="secondTypeBalls" name="secondTypeBalls" style="margin-left: 5px">
-                <option value="5">5 Points</option>
-                <option value="15">15 Points</option>
-                <option value="25">25 Points</option>
-            </select>
-            <select id="secondColorBalls" name="secondColorBalls" style="margin-left: 5px">
-                <option value="#F3E5AB">Vanila</option>
-                <option value="#C68E17">Caramel</option>
-                <option value="#966F33">Wood</option>
-                <option value="#C36241">Rust</option>
-                <option value="#6F4E37">Coffee</option>
-                <option value="#C85A17">Chocolate</option>
-                <option value="white">White</option>
-                <option value="black">Black</option>
-            </select>
-            </br>
-            <select id="thirdTypeBalls" name="thirdTypeBalls" style="margin-left: 5px">
-                <option value="5">5 Points</option>
-                <option value="15">15 Points</option>
-                <option value="25">25 Points</option>
-            </select>
-            <select id="thirdColorBalls" name="thirdColorBalls" style="margin-left: 5px">
+            <input id="rightKey" name="rightKey" type="text" placeholder="Enter key for right move">
+            <br>       
+            <input id="leftKey" name="leftKey" type="text" placeholder="Enter key for left move">               
+            <br>                
+            <input id="upKey" name="upKey" type="text" placeholder="Enter key for up move">
+            <br>
+            <input id="downKey" name="downKey" type="text" placeholder="Enter key for down move">               
+            <br>
+            <input id="ballsNum" name="ballsNum" type="text" placeholder="Enter Balls numbers">
+            <br>
+            <br>
+            <label><b>Choose type and color for Balls:</b></label>
+            <br>
+                <label><b>5 Points:</b></label>
+                <select id="firstColorBalls" name="firstColorBalls">
+                  <option value="#F3E5AB">Vanila</option>
+                  <option value="#C68E17">Caramel</option>
+                  <option value="#966F33">Wood</option>
+                  <option value="#C36241">Rust</option>
+                  <option value="#6F4E37">Coffee</option>
+                  <option value="#C85A17">Chocolate</option>
+                  <option value="white">White</option>
+                  <option value="black">Black</option>
+              </select>
+                <label><b>15 Points:</b></label>
+                <select id="secondColorBalls" name="secondColorBalls">
+                  <option value="#F3E5AB">Vanila</option>
+                  <option value="#C68E17">Caramel</option>
+                  <option value="#966F33">Wood</option>
+                  <option value="#C36241">Rust</option>
+                  <option value="#6F4E37">Coffee</option>
+                  <option value="#C85A17">Chocolate</option>
+                  <option value="white">White</option>
+                  <option value="black">Black</option>
+              </select>                
+              <label><b>25 Points:</b></label>        
+            <select id="thirdColorBalls" name="thirdColorBalls">
                 <option value="#F3E5AB">Vanila</option>
                 <option value="#C68E17">Caramel</option>
                 <option value="#966F33">Wood</option>
@@ -170,12 +153,9 @@
             </select>
             <br>
             <br>
-            <label style="margin-left: 5px" for="timeOfGame"><b>Time Of Game:</b></label>
-            <input id="timeOfGame" name="timeOfGame" type="text" style="margin-left: 35px" placeholder="Enter time to play">
+            <input id="timeGame" name="timeGame" type="text" placeholder="Enter time to play">
             <br>
-            <br>
-            <label style="margin-left: 5px" for="monstersNum"><b>Monsters Number:</b></label>
-            <input id="monstersNum" name="monstersNum" type="text" style="margin-left: 11px" placeholder="Enter monsters Number">
+            <input id="monstersNum" name="monstersNum" type="text" placeholder="Enter monsters Number">
             <br>
             <br>
             <input type="button" value="Start Play!" class="buttonRegular" onclick="return show('game','welcome','register','setting');"/>
@@ -211,12 +191,13 @@
 
     <aside>
       <br>
-      <h5>Hello </h5><b id="enterName">New User</b>
+      <h5>Hello </h5><b id="enterName" style="color: rgb(243, 140, 4);">New User</b>
       <h5>Lets Play!</h5>
     </aside>
   </div>
   <footer>Almog Sarafian - almogsa@post.bgu.ac.il , Tom Duany - tomdu@post.bgu.ac.il </footer>
-  <script src="register_login.js"></script>
+  <script type="text/javascript" src="register_login.js"></script>
+  <script type="text/javascript" src="setting.js"></script>
 </body>
 
 </html>
