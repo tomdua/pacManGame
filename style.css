@@ -107,7 +107,7 @@ padding-top: 20px;
 text-align: center;
 margin: 4px;
 border-radius: 7pt;
-background-color: rgb(39, 40, 41);
+background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) );
 border: 1px solid #ffffff;
 background-position: bottom;
 color: rgb(255, 255, 255);
