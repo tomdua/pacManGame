@@ -74,9 +74,6 @@ submitHandler: function(form) {
     userFirstName.value="";
     userLastName.value="";
     userEmail.value="";
-    day.value="Day";
-    month.value="Month";
-    year.year="Year";
     alert("You registered successfuly!");
     return show('login','setting','about','welcome','register');           
 }

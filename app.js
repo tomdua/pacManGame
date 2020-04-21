@@ -6,9 +6,10 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
-var user = {userName: "p", password: "p"};// firstName:"Default", lastName:"User", Email: "a@gmai.com", day: 1, month: 1, year: 2019};
+var user = {userName: "p", password: "p"};// firstName:"Default", lastName:"User"
     var users = [];
-    users.push(user);
+	users.push(user);
+var gameSettings; //= {rightKey,leftKey,upKey,downKey,ballsNumber,timeGame,monsterNumber};
 
 
 function show(shown, hidden1, hidden2, hidden3, hidden4){
