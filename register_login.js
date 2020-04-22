@@ -105,11 +105,10 @@ if (users[i]["userName"] == name.value && users[i]["password"] == password.value
     currentUser = users[i];
     $("#enterName").text(name.value);
     name.value="";
-     password.value="";
-    return show('setting','welcome','register','login');
+    password.value="";
+    return show('setting','game','welcome','register','login');;
     }          
 }
-
 alert("User name or password incorrect! Try again");
 }
 

@@ -1,4 +1,4 @@
-var context;
+var context=canvas.getContext("2d");
 var shape = new Object();
 var board;
 var score;
@@ -7,8 +7,8 @@ var start_time;
 var time_elapsed;
 var interval;
 var user = {userName: "p", password: "p"};// firstName:"Default", lastName:"User"
-    var users = [];
-	users.push(user);
+var users= new Array();
+users.push(user);
 var gameSettings; //= {rightKey,leftKey,upKey,downKey,ballsNumber,timeGame,monsterNumber};
 
 
@@ -22,10 +22,10 @@ function show(shown, hidden1, hidden2, hidden3, hidden4){
   }
 
 
-$(document).ready(function() {
+/*$(document).ready(function() {
 	context = canvas.getContext("2d");
 	Start();
-});
+});*/
 
 function Start() {
 	board = new Array();

@@ -97,17 +97,14 @@ function updateSttings() {
         rightKey: rKey.value, leftKey: lKey.value, upKey: uKey.value, downKey: dKey.value,
         ballsNumber: ballsNumber.value, timeGame: tGame.value, monsterNumber: monsterNumber.value
     };
-    return show('game', 'welcome', 'register', 'setting');
+    Start();
+    return show('game','welcome','register','login','setting');
 }
 
 function randomSettings() {
-
     $('input[name=rightKey]').val("d");
-
     $('input[name=leftKey]').val("a");
-
     $('input[name=upKey]').val("w");
-
     $('input[name=downKey]').val("s");
     let randomBS= getRndInteger(50, 90);
     $('input[name=ballsNum]').val(randomBS);
@@ -121,9 +118,6 @@ function randomSettings() {
     $('input[name=15BallColor]').val(random15);
     let random25 = getRandomColor();
     $('input[name=25BallColor]').val(random25);
-
-    
-    
     gameSettings["ball5"] = random5;
     gameSettings["ball15"] = random15;
     gameSettings["ball25"] = random25;
@@ -134,12 +128,16 @@ function randomSettings() {
     gameSettings["ballsNumber"] = randomBS;
     gameSettings["monsterNumber"] = randomNM;
     gameSettings["timeGame"] = randomT;
-
-    
-
-
     //return show('game', 'welcome', 'register', 'setting');
 }
+
+/*function settingsWereSet(){
+    for(var i=0;i<gameSettings.length;i++){
+        if(gameSettings[i].value="")
+            return false;
+    }
+return true;
+}*/
 
 
 function getRandomColor() {
@@ -153,4 +151,15 @@ function getRandomColor() {
 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
+}
+
+
+function startGame(){
+    let loggedUser=$("#enterName").text();
+    if(loggedUser==='New User') {
+        alert("You must log in before playing!");
+        return;
+    }
+   
+    
 }
