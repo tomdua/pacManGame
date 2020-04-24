@@ -34,6 +34,7 @@ var pacLives;
 
 function Start() {
 	board = new Array();
+	collor();
 	monsters = [];
 	monsters.push(new monster(0,0,"img/mon1.png"));
 	monsters.push(new monster(0,9,"img/mon2.png"));
@@ -119,8 +120,6 @@ function Start() {
 	monsterInterval =setInterval(UpdatePositionMonster,  400);
 }
 
-
-
 function DefaultLocations(){
 	monsters[0].x=0;
 	monsters[0].y=0;
@@ -177,6 +176,13 @@ function GetKeyPressed() {
 		return 4;
 	}
 }
+
+function collor() {
+	$('input[name=5PtKeyColor]').val(gameSettings["fiveBall"]);
+	$('input[name=15PtKeyColor]').val(gameSettings["fifteenBall"]);
+	$('input[name=25PtKeyColor]').val(gameSettings["twentyFBall"]);
+}
+
 
 function Draw() {
 	canvas.width = canvas.width; //clean board
@@ -397,7 +403,6 @@ function UpdatePosition() {
 	if (board[shape.i][shape.j] == 1.3) {
 		score=score+25;
 	}
-	
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
