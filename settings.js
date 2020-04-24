@@ -113,7 +113,6 @@ function randomSettings() {
     $('input[name=15BallColor]').val(random15);
     let random25 = getRandomColor();
     $('input[name=25BallColor]').val(random25);
-  
     updateSttings();
 }
 
