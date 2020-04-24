@@ -2,23 +2,23 @@ $("#settingsForm").validate({
     rules: {
         rightKey: {
             required: true,
-            minlength: 1,
-            maxlength: 1
+           // minlength: 1,
+           // maxlength: 1
         },
         leftKey: {
             required: true,
-            minlength: 1,
-            maxlength: 1
+         //   minlength: 1,
+          //  maxlength: 1
         },
         upKey: {
             required: true,
-            minlength: 1,
-            maxlength: 1
+          //  minlength: 1,
+          //  maxlength: 1
         },
         downKey: {
             required: true,
-            minlength: 1,
-            maxlength: 1
+           // minlength: 1,
+          //  maxlength: 1
         },
         ballsNum: {
             required: true,
@@ -37,23 +37,23 @@ $("#settingsForm").validate({
     messages: {
         rightKey: {
             required: "You must enter a key",
-            minlength: "Right key must be one character",
-            maxlength: "Right key must be one character"
+          //  minlength: "Right key must be one character",
+         //   maxlength: "Right key must be one character"
         },
         leftKey: {
             required: "You must enter a key",
-            minlength: "Left key must be one character",
-            maxlength: "Left key must be one character"
+          //  minlength: "Left key must be one character",
+          //  maxlength: "Left key must be one character"
         },
         upKey: {
             required: "You must enter a key",
-            minlength: "Up key must be one character",
-            maxlength: "Up key must be one character"
+          //  minlength: "Up key must be one character",
+           // maxlength: "Up key must be one character"
         },
         downKey: {
             required: "You must enter a key",
-            minlength: "Down key must be one character",
-            maxlength: "Down key must be one character"
+          //  minlength: "Down key must be one character",
+          //  maxlength: "Down key must be one character"
         },
 
         ballsNum: {
@@ -70,6 +70,11 @@ $("#settingsForm").validate({
         }
     },
     submitHandler: function (form) {
+        let loggedUser=$("#enterName").text();
+        if(loggedUser==='New User') {
+            alert("You must log in before playing!");
+            return;
+        }
         var ball5 = document.getElementById("5BallColor");
         var ball15 = document.getElementById("15BallColor");
         var ball25 = document.getElementById("25BallColor");
@@ -86,26 +91,40 @@ $("#settingsForm").validate({
 });
 
 function updateSttings() {
-    var rKey = document.getElementById("rightKey");
-    var lKey = document.getElementById("leftKey");
-    var uKey = document.getElementById("upKey");
-    var dKey = document.getElementById("downKey");
-    var ballsNumber = document.getElementById("ballsNum")
-    var tGame = document.getElementById("timeGame");
-    var monsterNumber = document.getElementById("monstersNum");
-    gameSettings = {
-        rightKey: rKey.value, leftKey: lKey.value, upKey: uKey.value, downKey: dKey.value,
-        ballsNumber: ballsNumber.value, timeGame: tGame.value, monsterNumber: monsterNumber.value
-    };
-    Start();
+    var rKeyIn = document.getElementById("rightKey");
+    var lKeyIn = document.getElementById("leftKey");
+    var uKeyIn = document.getElementById("upKey");
+    var dKeyIn = document.getElementById("downKey");
+    var bNumberIn = document.getElementById("ballsNum")
+    var tGameIn = document.getElementById("timeGame");
+    var monsterNumIN = document.getElementById("monstersNum");
+    var color25In = document.getElementById('25BallColor');
+    var color15In = document.getElementById('15BallColor');
+    var color5In = document.getElementById('5BallColor');
+
+
+
+
+
+
+
+
+
+   // var gameSettings;
+    // gameSettings = {
+    //      right: rKey.value, left: lKey.value, up: uKey.value, down: dKey.value,
+    //      balls: ballsNumber.value, time: tGame.value, monste: monsterNumber.value,
+    //      fiveBall: ball5.value,fifteenBall: ball15.value, twentyFBall: ball25.value 
+    // };
+    //Start();
     return show('game','welcome','register','login','setting');
 }
 
 function randomSettings() {
-    $('input[name=rightKey]').val("d");
-    $('input[name=leftKey]').val("a");
-    $('input[name=upKey]').val("w");
-    $('input[name=downKey]').val("s");
+    $('input[name=rightKey]').val("Arrow Right");
+    $('input[name=leftKey]').val("Arrow Left");
+    $('input[name=upKey]').val("Arrow Up");
+    $('input[name=downKey]').val("Arrow Down");
     let randomBS= getRndInteger(50, 90);
     $('input[name=ballsNum]').val(randomBS);
     let randomNM = getRndInteger(1, 4);
@@ -118,17 +137,18 @@ function randomSettings() {
     $('input[name=15BallColor]').val(random15);
     let random25 = getRandomColor();
     $('input[name=25BallColor]').val(random25);
-    gameSettings["ball5"] = random5;
-    gameSettings["ball15"] = random15;
-    gameSettings["ball25"] = random25;
-    gameSettings["rightKey"] = '68';
-    gameSettings["leftKey"] = '65';
-    gameSettings["upKey"] = '87';
-    gameSettings["downKey"] = '83';
-    gameSettings["ballsNumber"] = randomBS;
-    gameSettings["monsterNumber"] = randomNM;
-    gameSettings["timeGame"] = randomT;
+    // gameSettings["fiveball"] = random5;
+    // gameSettings["fifteenBall"] = random15;
+    // gameSettings["twentyFBall"] = random25;
+    // gameSettings["rightKey"] = '68';
+    // gameSettings["leftKey"] = '65';
+    // gameSettings["upKey"] = '87';
+    // gameSettings["downKey"] = '83';
+    // gameSettings["ballsNumber"] = randomBS;
+    // gameSettings["monsterNumber"] = randomNM;
+    // gameSettings["timeGame"] = randomT;
     //return show('game', 'welcome', 'register', 'setting');
+    return;
 }
 
 /*function settingsWereSet(){
@@ -154,12 +174,10 @@ function getRndInteger(min, max) {
 }
 
 
-function startGame(){
-    let loggedUser=$("#enterName").text();
-    if(loggedUser==='New User') {
-        alert("You must log in before playing!");
-        return;
-    }
-   
-    
-}
+// function startGame(){
+//     let loggedUser=$("#enterName").text();
+//     if(loggedUser==='New User') {
+//         alert("You must log in before playing!");
+//         return;
+//     }
+// }

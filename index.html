@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script src="./jquery-3.4.1.slim.min.js"></script>
-  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"
+ <script src="./jquery-3.4.1.slim.min.js"></script>
+ <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"
     type="text/javascript"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/additional-methods.min.js"
     type="text/javascript"></script>
@@ -15,16 +15,17 @@
 </head>
 
 <body>
+
   <header>
     <div id="logo">
             <img src="./img/logo5.png" alt="" style="height: 50px; float: left;">
-            
         Designed by
         <br>
         Almog Sarafian & Tom Duany
-      
     </div>
   </header>
+ 
+
 
   <div id="app">
     <nav>
@@ -36,7 +37,7 @@
         <br>
         <li><a href="#login" onclick="return show('login','setting','game','welcome','register');">Login</a></li>
         <br>
-        <li><a href="#setting" onclick="return show('setting','game','welcome','register','login');">Setting</a></li>
+        <li><a href="#setting" onclick="return show('setting','game','welcome','register','login');">Settings</a></li>
         <br>
         <li><a href="#about" onclick="aboutFunction()">About</a></li>
       </ul>
@@ -99,16 +100,21 @@
 
 
       <div id="setting" style="display:none">
+
         <h2>Game Settings:</h2>
         <br>
             <form id="settingsForm" action="">
-            <input id="rightKey" name="rightKey" type="text" placeholder="Right Key">
-            <br>       
-            <input id="leftKey" name="leftKey" type="text" placeholder="Left Key">               
-            <br>                
-            <input id="upKey" name="upKey" type="text" placeholder="Up Key">
+              <img src="img/arrowRight.jpeg" style="margin-bottom: -10px;margin-right: 11px;"/>
+              <input id="rightKey" name="rightKey" type="text" onkeypress="keyCodeRight(event)" placeholder="Right Key">
+            <br>     
+            <img src="img/arrowLeft.jpeg" style="margin-bottom: -10px; margin-right: 4px;" />  
+            <input id="leftKey" name="leftKey" type="text" onkeypress="keyCodeLeft(event)" placeholder="Left Key">               
+            <br>      
+            <img src="img/arrowUp.jpeg" style="margin-bottom: -10px;margin-right: 11px;"/>          
+            <input id="upKey" name="upKey" type="text" onkeypress="keyCodeUp(event)" placeholder="Up Key">
             <br>
-            <input id="downKey" name="downKey" type="text" placeholder="Down Key">               
+            <img src="img/arrowDown.jpeg" style="margin-bottom: -10px;margin-right: 4px;"/>
+            <input id="downKey" name="downKey" type="text" onkeypress="keyCodeDown(event)" placeholder="Down Key">               
             <br>
             <input id="ballsNum" name="ballsNum" type="text" placeholder="Balls Number">
             <br>
@@ -130,22 +136,27 @@
             <input id="monstersNum" name="monstersNum" type="text" placeholder="Monsters Number">
             <br>
             <br>
-            <input type="submit" value="Start Play!" class="buttonRegular" onclick="startGame()"/>
+            <input type="submit" value="Start Play!" class="buttonRegular" />
             <input type="button" class="buttonRegular" onclick="randomSettings()" value="Random Settings">
         </form>
       </div>
 
-
       <div id="game" style="display:none">
-        <canvas id="canvas" height="600" width="600"></canvas>
-        <div id="score" style="display: inline;">
-          <label for="lblScore">SCORE:</label>
-          <input id="lblScore" type="text" />
-        </div>
-        <div id="time" style="display: inline;">
-          <label for="lblTime">TIME:</label>
-          <input id="lblTime" type="text" />
-        </div>
+        <ul id="gameDetails">
+         <input type="button" id="NewGame" value="Start New" onclick="startNewGame()" style="width: 7%;">
+          <c>SCORE: </c>
+              <input id="lblScore" type="text" style="width: 7%;"/>
+         <c>TIME:</c>
+              <input id="lblTime" type="text" style="width: 7%;"/>
+          <c>5Pt:</c>
+              <input type="color" name="5PtKeyColor" style="width: 7%;" disabled>
+         <c>15Pt:</c>
+              <input type="color" name="15PtKeyColor" style="width: 7%;" disabled>
+        <c>25Pt:</c>
+              <input type="color" name="25PtKeyColor" style="width: 7%;" disabled>
+          <c>LIVES: </c>
+      </ul>
+      <canvas id="canvas" height="600" width="600"></canvas>
       </div>
 
       <dialog id="about">
@@ -166,9 +177,11 @@
   </div>
   <footer><strong>contact us:)</strong><span style="float: left;">Almog - almogsa@post.bgu.ac.il</span>
     <span style="float: right;">Tom - tomdu@post.bgu.ac.il</span> </footer>
-  <script type="text/javascript" src="app.js"></script>
-  <script type="text/javascript" src="register_login.js"></script>
-  <script type="text/javascript" src="settings.js"></script>
+    <script src="./app.js"></script>
+    <script src="./register_login.js"></script>
+    <script src="./settings.js"></script>
+
+
 </body>
 
 </html>
