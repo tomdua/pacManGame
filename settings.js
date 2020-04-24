@@ -1,24 +1,16 @@
 $("#settingsForm").validate({
     rules: {
         rightKey: {
-            required: true,
-           // minlength: 1,
-           // maxlength: 1
+            required: true
         },
         leftKey: {
-            required: true,
-         //   minlength: 1,
-          //  maxlength: 1
+            required: true
         },
         upKey: {
-            required: true,
-          //  minlength: 1,
-          //  maxlength: 1
+            required: true
         },
         downKey: {
-            required: true,
-           // minlength: 1,
-          //  maxlength: 1
+            required: true 
         },
         ballsNum: {
             required: true,
@@ -36,24 +28,16 @@ $("#settingsForm").validate({
     },
     messages: {
         rightKey: {
-            required: "You must enter a key",
-          //  minlength: "Right key must be one character",
-         //   maxlength: "Right key must be one character"
-        },
+            required: "You must enter a key"
+            },
         leftKey: {
-            required: "You must enter a key",
-          //  minlength: "Left key must be one character",
-          //  maxlength: "Left key must be one character"
+            required: "You must enter a key"          
         },
         upKey: {
-            required: "You must enter a key",
-          //  minlength: "Up key must be one character",
-           // maxlength: "Up key must be one character"
+            required: "You must enter a key"          
         },
         downKey: {
-            required: "You must enter a key",
-          //  minlength: "Down key must be one character",
-          //  maxlength: "Down key must be one character"
+            required: "You must enter a key"         
         },
 
         ballsNum: {
@@ -104,7 +88,6 @@ function updateSttings() {
     var color15In = document.getElementById('15BallColor');
     var color5In = document.getElementById('5BallColor');
 
-   //var gameSettings;
     gameSettings = {
          right: rKeyIn.value, left: lKeyIn.value, up: uKeyIn.value, down: dKeyIn.value,
          balls: bNumberIn.value, time: tGameIn.value, monsters: monsterNumIN.value,
