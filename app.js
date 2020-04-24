@@ -388,16 +388,23 @@ function UpdatePosition() {
 
 		}
 	}
-	if (board[shape.i][shape.j] == 1) {
-		score++;
+	if (board[shape.i][shape.j] == 1.1) {
+		score=score+5;
 	}
+	if (board[shape.i][shape.j] == 1.2) {
+		score=score+15;
+	}
+	if (board[shape.i][shape.j] == 1.3) {
+		score=score+25;
+	}
+	
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
-	if (score >= 20 && time_elapsed <= 10) {
+	if (score >= 50 && time_elapsed <= 10) {
 		pac_color = "green";
 	}
-	if (score == 50) {
+	if (score == 100) {
 		window.clearInterval(interval);
 		window.alert("Game completed");
 	} else {
