@@ -85,6 +85,8 @@ $("#settingsForm").validate({
         }
         else {
             updateSttings();
+            Start();
+            return show('game','welcome','register','login','setting');
         }
         return false;
     }
@@ -95,29 +97,20 @@ function updateSttings() {
     var lKeyIn = document.getElementById("leftKey");
     var uKeyIn = document.getElementById("upKey");
     var dKeyIn = document.getElementById("downKey");
-    var bNumberIn = document.getElementById("ballsNum")
+    var bNumberIn = document.getElementById("ballsNum");
     var tGameIn = document.getElementById("timeGame");
     var monsterNumIN = document.getElementById("monstersNum");
     var color25In = document.getElementById('25BallColor');
     var color15In = document.getElementById('15BallColor');
     var color5In = document.getElementById('5BallColor');
 
-
-
-
-
-
-
-
-
-   // var gameSettings;
-    // gameSettings = {
-    //      right: rKey.value, left: lKey.value, up: uKey.value, down: dKey.value,
-    //      balls: ballsNumber.value, time: tGame.value, monste: monsterNumber.value,
-    //      fiveBall: ball5.value,fifteenBall: ball15.value, twentyFBall: ball25.value 
-    // };
-    //Start();
-    return show('game','welcome','register','login','setting');
+   //var gameSettings;
+    gameSettings = {
+         right: rKeyIn.value, left: lKeyIn.value, up: uKeyIn.value, down: dKeyIn.value,
+         balls: bNumberIn.value, time: tGameIn.value, monsters: monsterNumIN.value,
+         fiveBall: color5In.value,fifteenBall: color15In.value, twentyFBall: color25In.value 
+    };
+    
 }
 
 function randomSettings() {
@@ -137,27 +130,11 @@ function randomSettings() {
     $('input[name=15BallColor]').val(random15);
     let random25 = getRandomColor();
     $('input[name=25BallColor]').val(random25);
-    // gameSettings["fiveball"] = random5;
-    // gameSettings["fifteenBall"] = random15;
-    // gameSettings["twentyFBall"] = random25;
-    // gameSettings["rightKey"] = '68';
-    // gameSettings["leftKey"] = '65';
-    // gameSettings["upKey"] = '87';
-    // gameSettings["downKey"] = '83';
-    // gameSettings["ballsNumber"] = randomBS;
-    // gameSettings["monsterNumber"] = randomNM;
-    // gameSettings["timeGame"] = randomT;
-    //return show('game', 'welcome', 'register', 'setting');
-    return;
+  
+    updateSttings();
 }
 
-/*function settingsWereSet(){
-    for(var i=0;i<gameSettings.length;i++){
-        if(gameSettings[i].value="")
-            return false;
-    }
-return true;
-}*/
+
 
 
 function getRandomColor() {
@@ -174,10 +151,3 @@ function getRndInteger(min, max) {
 }
 
 
-// function startGame(){
-//     let loggedUser=$("#enterName").text();
-//     if(loggedUser==='New User') {
-//         alert("You must log in before playing!");
-//         return;
-//     }
-// }
