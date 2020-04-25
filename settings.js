@@ -103,7 +103,7 @@ function randomSettings() {
     $('input[name=downKey]').val("Arrow Down");
     let randomBS= getRndInteger(50, 90);
     $('input[name=ballsNum]').val(randomBS);
-    let randomNM = getRndInteger(1, 4);
+    let randomNM = getRndInteger(1, 5);
     $('input[name=monstersNum]').val(randomNM);
     let randomT = Math.floor(Math.random() * 1000) + 60;
     $('input[name=timeGame]').val(randomT);

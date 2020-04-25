@@ -142,7 +142,7 @@
       </div>
 
       <div id="game" style="display:none">
-        
+        <br>
          <input type="button" id="NewGame" value="Start New" onclick="startNewGame()" style="width: 7%;">
       
           <c>5Pt:</c>
@@ -151,7 +151,8 @@
               <input type="color" name="15PtKeyColor" style="width: 7%;" disabled>
         <c>25Pt:</c>
               <input type="color" name="25PtKeyColor" style="width: 7%;" disabled>
-       
+       <br>
+       <br>
       
       <canvas id="canvas" height="600" width="1250" style="box-sizing: border-box;
         position: relative; border: 8px  double tomato;"></canvas> 
@@ -159,11 +160,12 @@
 
       <dialog id="about">
         <button type="button" style="float: right;" onclick="closeAboutFunction()">X</button>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque voluptatem cumque laudantium ipsa consectetur
-          saepe a sapiente facilis enim maxime voluptate nesciunt dolorem repellat architecto laborum necessitatibus,
-          aspernatur quam ipsum! Hic, laudantium in quia voluptates odit quos ea deleniti obcaecati dolorem ut provident
-          distinctio quas ipsam blanditiis dolor reprehenderit itaque?
-        </p>
+        <b> Presentors: Tom Duany & </b>
+           <b>Almog Sarafian</b>
+            <p> We used jQuery validation plugin in the login and registration pages,
+              datePicker template for the birthday and more private functions.
+             </p>
+            <p>The difficulties we encountered were mainly on the game page where we needed to add additional characters and functionality.</p>
       </dialog>
     </main>
 
@@ -178,14 +180,15 @@
       <br>
       <span>TIME:</span>
       <div id="lblTime" ></div>
-      <br>
-      <span>LIVES: </span>
+      <h3 id="redMonster" style="color: rgb(243, 52, 4); display: none;">Watch out for the red monster!</h3>
+      <span id="lives">LIVES: </span>
       <br>
       </div>
+      
     </aside>
   </div>
 
-  
+
   <footer><strong>contact us:)</strong><span style="float: left;">Almog - almogsa@post.bgu.ac.il</span>
     <span style="float: right;">Tom - tomdu@post.bgu.ac.il</span> </footer>
     <script src="./app.js"></script>

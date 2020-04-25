@@ -46,9 +46,9 @@ function Start() {
 	color();
 	monsters = [];
 	monsters.push(new monster(0,0,"img/mon1.png"));
-	monsters.push(new monster(0,9,"img/mon2.png"));
-	monsters.push(new monster(9,1,"img/mon3.png"));
-	monsters.push(new monster(9,9,"img/mon4.png"));
+	monsters.push(new monster(20,0,"img/mon2.png"));
+	monsters.push(new monster(20,9,"img/mon3.png"));
+	monsters.push(new monster(0,9,"img/mon4.png"));
 	movingBonus=[0,0,"img/mon5.png"];
 	//backgroundAudio.play();
 	gameTime= gameSettings["time"];
@@ -61,6 +61,8 @@ function Start() {
 	var food_remain = gameSettings["balls"];
 	leftBalls=food_remain;
 	monsterNum=gameSettings["monsters"];
+	if(monsterNum>1)
+	document.getElementById("redMonster").style.display='block';
 	var points5 = Math.floor(food_remain * 0.6);
 	var points15 = Math.floor(food_remain* 0.3);
 	var points25 = Math.floor(food_remain * 0.1);
@@ -141,15 +143,15 @@ function Wall(i,j){
 function DefaultLocations(){
 	monsters[0].x=0;
 	monsters[0].y=0;
-	monsters[1].x=0;
-	monsters[1].y=9;
-	monsters[2].x=9;
-	monsters[2].y=0;
-	monsters[3].x=9;
+	monsters[1].x=20;
+	monsters[1].y=0;
+	monsters[2].x=20;
+	monsters[2].y=9;
+	monsters[3].x=0;
 	monsters[3].y=9;
 	board[shape.i][shape.j]=0;
 	var emptyCell = findRandomEmptyCell(board);
-	while((emptyCell[0] === 0 && emptyCell[1] === 0) || (emptyCell[0] === 9 && emptyCell[1] === 9) || (emptyCell[0] === 9 && emptyCell[1] === 0) || (emptyCell[0] === 0 && emptyCell[1] === 9))
+	while((emptyCell[0] === 0 && emptyCell[1] === 0) || (emptyCell[0] === 20 && emptyCell[1] === 0) || (emptyCell[0] === 20 && emptyCell[1] === 9) || (emptyCell[0] === 0 && emptyCell[1] === 9))
 		emptyCell = findRandomEmptyCell(board);
 	shape.i=emptyCell[0];
 	shape.j=emptyCell[1];
@@ -425,20 +427,25 @@ function UpdatePosition() {
 	board[shape.i][shape.j] = 2;
 	for(var m =0; m < monsterNum; m++) {
 		if (board[monsters[m].x][monsters[m].y] === 2) {
+			//stronger monster
+			if(m === 1){
+				pacLives=pacLives-2;
+				score = score - 10;
+				$('#gameData img:last-child').remove();
+				$('#gameData img:last-child').remove();
+			}else{
 			pacLives--;
-			// if(pacLife>=0)
 			$('#gameData img:last-child').remove();
 			score = score - 10;
+			}
 			if (pacLives > 0) {
 				DefaultLocations();
 				 break;
-			 } //else if (checkEndGame()) {
-			//     break;
-			// }
+			 } 
 		}
 	}
 
-	if (pacLives === 0) {
+	if (pacLives <= 0) {
 		window.clearInterval(interval);
 		window.clearInterval(monsterInterval);
 		backgroundAudio.pause();
