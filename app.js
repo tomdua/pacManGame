@@ -29,13 +29,7 @@ var seconds ;
 var board_width = 21;
 var board_height = 10;
 
-
-backgroundAudio.addEventListener('ended', function() {
-	this.currentTime = 0;
-	this.play();
-}, false);
-
-  class monster{
+class monster{
 	constructor(x,y,url){
 		this.x= x;
 		this.y=y;
@@ -44,29 +38,12 @@ backgroundAudio.addEventListener('ended', function() {
 	}
 }
 
-
-function startTime(){
-	seconds = gameTime, $seconds = document.querySelector('#lblTime');
-	(function countdown() {
-		$seconds.textContent = seconds + 's'
-		if(seconds --> 0) setTimeout(countdown, 1000)
-		if(seconds==(-1)){
-		window.alert("Game Over");
-		document.getElementById("gameData").style.display='none';
-		window.clearInterval(interval);
-		window.clearInterval(monsterInterval);
-		backgroundAudio.pause();
-
-	}
-	})();
-}
-
-
 function Start() {
+	for(var i=0;i<5;i++)
+	$("#gameData").append('<img src="img/heart.png" height="20px" width="20px">');
 	document.getElementById("gameData").style.display='block';
-
 	board = new Array();
-	collor();
+	color();
 	monsters = [];
 	monsters.push(new monster(0,0,"img/mon1.png"));
 	monsters.push(new monster(0,9,"img/mon2.png"));
@@ -81,16 +58,13 @@ function Start() {
 	pac_color = "yellow";
 	pacmanDirection =1;
 	var cnt = board_width * board_height;
-
 	var food_remain = gameSettings["balls"];
+	leftBalls=food_remain;
 	monsterNum=gameSettings["monsters"];
 	var points5 = Math.floor(food_remain * 0.6);
 	var points15 = Math.floor(food_remain* 0.3);
 	var points25 = Math.floor(food_remain * 0.1);
-	
 	var pacman_remain = 1;
-	//start_time = new Date(gameTime).getTime();
-
 		for (var i = 0; i < board_width; i++) {
 		board[i] = new Array();
 		for (var j = 0; j < board_height; j++) {
@@ -221,7 +195,7 @@ function GetKeyPressed() {
 	}
 }
 
-function collor() {
+function color() {
 	$('input[name=5PtKeyColor]').val(gameSettings["fiveBall"]);
 	$('input[name=15PtKeyColor]').val(gameSettings["fifteenBall"]);
 	$('input[name=25PtKeyColor]').val(gameSettings["twentyFBall"]);
@@ -294,20 +268,7 @@ function Draw() {
 			}
 			}
 		}
-		for(var m =0; m < monsterNum; m++) {
-            if (board[monsters[m].x][monsters[m].y] === 2) {
-                pacLives--;
-                // if(pacLife>=0)
-                $('#gameData img:last-child').remove();
-                score = score - 10;
-                if (pacLives > 0) {
-                    DefaultLocations();
-                     break;
-                 } //else if (checkEndGame()) {
-                //     break;
-                // }
-            }
-        }
+	
 
 }
 
@@ -444,85 +405,115 @@ function UpdatePosition() {
 	//balls color
 	if (board[shape.i][shape.j] == 1.1) {
 		score=score+5;
+		leftBalls--;
 	}
 	if (board[shape.i][shape.j] == 1.2) {
 		score=score+15;
+		leftBalls--;
 	}
 	if (board[shape.i][shape.j] == 1.3) {
 		score=score+25;
+		leftBalls--;
+
 	}
-	//pacman ate moving character
+	//pacman got moving bonus
 	if(shape.i === movingBonus[0] && shape.j === movingBonus[1])
 	{
 		score+=50;
 		bonusEaten=true;
 	}
 	board[shape.i][shape.j] = 2;
+	for(var m =0; m < monsterNum; m++) {
+		if (board[monsters[m].x][monsters[m].y] === 2) {
+			pacLives--;
+			// if(pacLife>=0)
+			$('#gameData img:last-child').remove();
+			score = score - 10;
+			if (pacLives > 0) {
+				DefaultLocations();
+				 break;
+			 } //else if (checkEndGame()) {
+			//     break;
+			// }
+		}
+	}
 
-
-
-	//var currentTime = new Date().g
-//	time_elapsed = (currentTime - start_time) / 1000;
-	// if (score >= 50 && time_elapsed <= 10) {
-	// 	pac_color = "green";
-	// }
-	// if (score == 100) {
-	// 	window.clearInterval(interval);
-	// 	window.alert("Game completed");
-	// } 
 	if (pacLives === 0) {
 		window.clearInterval(interval);
 		window.clearInterval(monsterInterval);
 		backgroundAudio.pause();
-		window.alert("Loser!!");
+		window.alert("Loser!");
 		document.getElementById("gameData").style.display='none';
 
 	}
-	// else if(time_elapsed>= gameTime ) {
-	// 	window.clearInterval(interval);
-	// 	window.clearInterval(monsterInterval);
-	// 	backgroundAudio.pause();
-	// 	window.alert("Loser!!");
-	// 	// if (score < 150)
-	// 	// 	Alert.render("You can do better than " + score + " points!");
-	// 	// else
-	// 	// {
-	// 	// 	Alert.render("<img src='Images/winner.gif' width='500' height='400'>");
-	// 	// }
-	// 	// return true;
-	// }
-	// else if(foodLeftToEat === 0){
-	// 	window.clearInterval(interval);
-	// 	window.clearInterval(monsterInterval);
-	// 	backgroundAudio.pause();
-	// 	// Alert.render("<img src='Images/winner.gif' width='500' height='400'>");
-	// 	// return true;
-	// }
+	if(leftBalls === 0){
+		window.clearInterval(interval);
+		window.clearInterval(monsterInterval);
+		backgroundAudio.pause();
+		window.alert("Winner!!!");
+		document.getElementById("gameData").style.display='none';
+	
+	}
 	else {
 		Draw();
 	}
 }
 
 
+backgroundAudio.addEventListener('ended', function() {
+	this.currentTime = 0;
+	this.play();
+}, false);
+
+
+
+
+function startTime(){
+	seconds = gameTime, $seconds = document.querySelector('#lblTime');
+	(function countdown() {
+		$seconds.textContent = seconds + 's'
+		if(seconds --> 0) setTimeout(countdown, 1000)
+		if(seconds==(-1)){
+			if(score<100){
+				window.alert("You can do better than " + score + " points!");
+				document.getElementById("gameData").style.display='none';
+				window.clearInterval(interval);
+				window.clearInterval(monsterInterval);
+				backgroundAudio.pause();
+
+			}
+			else{ 
+			window.alert("Winner!!!");
+			document.getElementById("gameData").style.display='none';
+			window.clearInterval(interval);
+			window.clearInterval(monsterInterval);
+			backgroundAudio.pause();
+			}
+
+	}
+	})();
+}
+
+
 
 function keyCodeUp(event) {
 	var x = event.which;
-	Up=x-32;//parseInt(event.keyCode);
+	Up=x-32;
   }
   
   function keyCodeDown(event) {
 	var x = event.which;
-	Down=x-32;//parseInt(event.keyCode);
+	Down=x-32;;
   }
 
   function keyCodeRight(event) {
 	var x = event.which;
-	Right=x-32;//parseInt(event.keyCode);
+	Right=x-32;
   }
   
   function keyCodeLeft(event) {
 	var x = event.which;
-	Left=x-32;//parseInt(event.keyCode);
+	Left=x-32;
   }
 
 
