@@ -22,6 +22,8 @@ var monsterInterval;
 var monsterNum;
 var movingBonus;
 var pacLives;
+var board_width = 21;
+var board_height = 10;
 
   class monster{
 	constructor(x,y,url){
@@ -46,7 +48,7 @@ function Start() {
 	pacLives=5;
 	pac_color = "yellow";
 	pacmanDirection =1;
-	var cnt = 100;
+	var cnt = 20 * 15;
 	var food_remain = gameSettings["balls"];
 	monsterNum=gameSettings["monsters"];
 	var points5 = Math.floor(food_remain * 0.6);
@@ -56,17 +58,24 @@ function Start() {
 	var pacman_remain = 1;
 	start_time = new Date();
 
-		for (var i = 0; i < 10; i++) {
+		for (var i = 0; i < board_width; i++) {
 		board[i] = new Array();
 		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
-		for (var j = 0; j < 10; j++) {
+		for (var j = 0; j < board_height; j++) {
 		if (
-			(i == 3 && j == 3) ||
-			(i == 3 && j == 4) ||
-			(i == 3 && j == 5) ||
-			(i == 6 && j == 1) ||
-			(i == 6 && j == 2)) 
+			(i === 1 && j === 2) || (i === 1 && j === 3) || (i === 4 && j === 1) || (i === 5 && j === 1) || (i === 6 && j === 1)
+            || (i === 6 && j === 2) || (i === 9 && j === 0) || (i === 6 && j === 0) || (i === 10 && j === 0) || (i === 10 && j === 1)
+            || (i === 13 && j === 1) || (i === 13 && j === 2) || (i === 14 && j === 1) || (i === 15 && j === 1) || (i === 18 && j === 2)
+            || (i === 18 && j === 3) || (i === 8 && j === 4) || (i === 9 && j === 4) || (i === 10 && j === 4) || (i === 11 && j === 4)
+            || (i === 1 && j === 5) || (i === 2 && j === 5) || (i === 3 && j === 5) || (i === 4 && j === 5) || (i === 9 && j === 5)
+            || (i === 15 && j === 5) || (i === 16 && j === 5) || (i === 17 && j === 5) || (i === 18 && j === 5) || (i === 11 && j === 0)
+            || (i === 8 && j === 6) || (i === 9 && j === 6) || (i === 10 && j === 6) || (i === 11 && j === 6) || (i === 5 && j === 7)
+            || (i === 14 && j === 7) || (i === 2 && j === 8) || (i === 3 && j === 8) || (i === 4 && j === 8) || (i === 14 && j === 8)
+            || (i === 15 && j === 8) || (i === 16 && j === 8) || (i === 17 && j === 8) || (i === 9 && j === 9) || (i === 10 && j === 8)
+			|| (i === 5 && j === 8) || (i === 10 && j === 9) || (i === 11 && j === 9)|| (i === 19 && j === 8) || (i === 19 && j === 14) || (i === 19 && j === 1)
+			|| (i === 20 && j === 1) || (i === 20 && j === 9) || (i === 20 && j === 14))
 				board[i][j] = 4;
+
 			else {
 				var randomNum = Math.random();
 				if (randomNum <= (1.0 * points5) / cnt) {
@@ -141,12 +150,14 @@ function DefaultLocations(){
 
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * 9 + 1);
-	var j = Math.floor(Math.random() * 9 + 1);
-	while (board[i][j] != 0) {
+	var j = Math.floor(Math.random() * (board_width -1) + 1);
+	while (board[i][j] != 0 ) {
 		i = Math.floor(Math.random() * 9 + 1);
-		j = Math.floor(Math.random() * 9 + 1);
+		j = Math.floor(Math.random() *  (board_width -1) + 1);
 	}
 	return [i, j];
+
+	
 }
 
 function GetKeyPressed() {
@@ -188,8 +199,8 @@ function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
-	for (var i = 0; i < 10; i++) {
-		for (var j = 0; j < 10; j++) {
+	for (var i = 0; i < board_width; i++) {
+		for (var j = 0; j < board_height; j++) {
 			var center = new Object();
 			center.x = i * 60 + 30;
 			center.y = j * 60 + 30;
@@ -340,8 +351,8 @@ function UpdatePositionMonster() {
 	return ans;
 }
 
-function IsValid(x,y){
-	return (x<10 && x>=0 && y<10 && y>=0 && board[x][y]!==4);
+function IsValid(x,y){ //?
+	return (x<board_width && x>=0 && y<board_height && y>=0 && board[x][y]!==4);
 }
 
 function getPossibleMoves(x,y){
@@ -375,7 +386,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 2) { //ArrowDown
-		if (shape.j < 9 && board[shape.i][shape.j + 1] != 4) {
+		if (shape.j < board_height-1 && board[shape.i][shape.j + 1] != 4) {
 			shape.j++;
 			pacmanDirection=2;
 		}
@@ -388,7 +399,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 4) {//ArrowRight
-		if (shape.i < 9 && board[shape.i + 1][shape.j] != 4) {
+		if (shape.i < board_width-1 && board[shape.i + 1][shape.j] != 4) {
 			shape.i++;
 			pacmanDirection=1;
 
