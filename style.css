@@ -57,7 +57,6 @@ body {
   padding: 5px;
   border-radius: 7pt;
   border: 1px solid #ffffff;
-
   -webkit-flex: 1 1 2%;
           flex: 1 1 2%;
   -webkit-order: 3;
@@ -67,7 +66,7 @@ body {
 aside h5{
  display: block;
  color: white;
- padding: 8px 16px;   
+ padding: 0px 16px;   
 }
 
  header {

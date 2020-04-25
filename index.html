@@ -142,20 +142,17 @@
       </div>
 
       <div id="game" style="display:none">
-        <ul id="gameDetails">
+        
          <input type="button" id="NewGame" value="Start New" onclick="startNewGame()" style="width: 7%;">
-          <c>SCORE: </c>
-              <input id="lblScore" type="text" style="width: 7%;"/>
-         <c>TIME:</c>
-              <input id="lblTime" type="text" style="width: 7%;"/>
+      
           <c>5Pt:</c>
               <input type="color" name="5PtKeyColor" style="width: 7%;" disabled>
          <c>15Pt:</c>
               <input type="color" name="15PtKeyColor" style="width: 7%;" disabled>
         <c>25Pt:</c>
               <input type="color" name="25PtKeyColor" style="width: 7%;" disabled>
-          <c>LIVES: </c>
-      </ul>
+       
+      
       <canvas id="canvas" height="600" width="1300" style="box-sizing: border-box;
         position: relative; border: 8px  double tomato;"></canvas> 
       </div>
@@ -174,6 +171,21 @@
       <br>
       <h5>Hello </h5><b id="enterName" style="color: rgb(243, 140, 4);">New User</b>
       <h5>Lets Play!</h5>
+      <div id="gameData" style="display: none;">
+      <span>SCORE: </span>
+      <input id="lblScore" type="text" style="width: 80%;"/>
+      <br>
+      <br>
+      <span>TIME:</span>
+      <div id="lblTime" ></div>
+      <br>
+      <span>LIVES: </span>
+      <img src="./img/heart.png" style="height: 20px; width:20px;" alt="">
+      <img src="./img/heart.png" style="height: 20px; width:20px;" alt="">
+      <img src="./img/heart.png" style="height: 20px; width:20px;" alt="">
+      <img src="./img/heart.png" style="height: 20px; width:20px;" alt="">
+      <img src="./img/heart.png" style="height: 20px; width:20px;" alt="">
+    </div>
     </aside>
   </div>
   <footer><strong>contact us:)</strong><span style="float: left;">Almog - almogsa@post.bgu.ac.il</span>

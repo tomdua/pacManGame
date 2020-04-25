@@ -24,6 +24,8 @@ var movingBonus;
 var pacLives;
 var backgroundAudio= new Audio("sound/PacMan.mp3");
 var gameTime;
+var bonusEaten=false;
+var seconds ;
 
 
 backgroundAudio.addEventListener('ended', function() {
@@ -40,7 +42,27 @@ backgroundAudio.addEventListener('ended', function() {
 	}
 }
 
+
+function startTime(){
+	seconds = gameTime, $seconds = document.querySelector('#lblTime');
+	(function countdown() {
+		$seconds.textContent = seconds + 's'
+		if(seconds --> 0) setTimeout(countdown, 1000)
+		if(seconds==(-1)){
+		window.alert("Game Over");
+		document.getElementById("gameData").style.display='none';
+		window.clearInterval(interval);
+		window.clearInterval(monsterInterval);
+		backgroundAudio.pause();
+
+	}
+	})();
+}
+
+
 function Start() {
+	document.getElementById("gameData").style.display='block';
+
 	board = new Array();
 	collor();
 	monsters = [];
@@ -49,8 +71,9 @@ function Start() {
 	monsters.push(new monster(9,1,"img/mon3.png"));
 	monsters.push(new monster(9,9,"img/mon4.png"));
 	movingBonus=[0,0,"img/mon5.png"];
-	backgroundAudio.play();
-	gameTime= gameSettings["tGameIn"];
+	//backgroundAudio.play();
+	gameTime= gameSettings["time"];
+	startTime();
 	score = 0;
 	pacLives=5;
 	pac_color = "yellow";
@@ -63,7 +86,7 @@ function Start() {
 	var points25 = Math.floor(food_remain * 0.1);
 	
 	var pacman_remain = 1;
-	start_time = new Date();
+	//start_time = new Date(gameTime).getTime();
 
 		for (var i = 0; i < 10; i++) {
 		board[i] = new Array();
@@ -126,6 +149,7 @@ function Start() {
 	);
 	interval = setInterval(UpdatePosition, 250);
 	monsterInterval =setInterval(UpdatePositionMonster,  400);
+	
 }
 
 function DefaultLocations(){
@@ -138,11 +162,11 @@ function DefaultLocations(){
 	monsters[3].x=9;
 	monsters[3].y=9;
 	board[shape.i][shape.j]=0;
-	var emptyC = findRandomEmptyCell(board);
-	while((emptyC[0] === 0 && emptyC[1] === 0) || (emptyC[0] === 9 && emptyC[1] === 9) || (emptyC[0] === 9 && emptyC[1] === 0) || (emptyC[0] === 0 && emptyC[1] === 9))
-		emptyC = findRandomEmptyCell(board);
-	shape.i=emptyC[0];
-	shape.j=emptyC[1];
+	var emptyCell = findRandomEmptyCell(board);
+	while((emptyCell[0] === 0 && emptyCell[1] === 0) || (emptyCell[0] === 9 && emptyCell[1] === 9) || (emptyCell[0] === 9 && emptyCell[1] === 0) || (emptyCell[0] === 0 && emptyCell[1] === 9))
+		emptyCell = findRandomEmptyCell(board);
+	shape.i=emptyCell[0];
+	shape.j=emptyCell[1];
 }
 
 
@@ -195,7 +219,8 @@ function collor() {
 function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
-	lblTime.value = time_elapsed;
+	//lblTime.value = time_elapsed;
+
 	for (var i = 0; i < 10; i++) {
 		for (var j = 0; j < 10; j++) {
 			var center = new Object();
@@ -237,16 +262,18 @@ function Draw() {
 				context.arc(center.x, center.y, 15, 0, 2 * Math.PI); // circle
 				context.fillStyle = gameSettings["fiveBall"];
 				context.fill();
+				//draw walls
 			} else if (board[i][j] == 4) {
 				context.beginPath();
 				context.rect(center.x - 30, center.y - 30, 60, 60);
 				context.fillStyle = "grey"; //color
 				context.fill();
 			}
-			if(movingBonus[0]=== i && movingBonus[1]===j) {
-				var movingBonusImg = new Image();
-				movingBonusImg.src = movingBonus[2];
-				context.drawImage(movingBonusImg, i * 60, j * 60, 45, 45);
+			//draw moving ghost
+			if(movingBonus[0]=== i && movingBonus[1]===j && !bonusEaten) {
+				var BonusImg = new Image();
+				BonusImg.src = movingBonus[2];
+				context.drawImage(BonusImg, i * 60, j * 60, 45, 45);
 			}
             //draw monsters
 			for(var m =0; m < monsterNum; m++){
@@ -259,12 +286,12 @@ function Draw() {
             if (board[monsters[m].x][monsters[m].y] === 2) {
                 pacLives--;
                 // if(pacLife>=0)
-           //     $('#gameDetails li:last-child').remove();
+                $('#gameData img:last-child').remove();
                 score = score - 10;
-                // if (pacLives > 0) {
-                //     DefaultLocations();
-                //     break;
-                // } else if (checkEndGame()) {
+                if (pacLives > 0) {
+                    DefaultLocations();
+                     break;
+                 } //else if (checkEndGame()) {
                 //     break;
                 // }
             }
@@ -402,6 +429,7 @@ function UpdatePosition() {
 
 		}
 	}
+	//balls color
 	if (board[shape.i][shape.j] == 1.1) {
 		score=score+5;
 	}
@@ -411,9 +439,18 @@ function UpdatePosition() {
 	if (board[shape.i][shape.j] == 1.3) {
 		score=score+25;
 	}
+	//pacman ate moving character
+	if(shape.i === movingBonus[0] && shape.j === movingBonus[1])
+	{
+		score+=50;
+		bonusEaten=true;
+	}
 	board[shape.i][shape.j] = 2;
-	var currentTime = new Date();
-	time_elapsed = (currentTime - start_time) / 1000;
+
+
+
+	//var currentTime = new Date().g
+//	time_elapsed = (currentTime - start_time) / 1000;
 	// if (score >= 50 && time_elapsed <= 10) {
 	// 	pac_color = "green";
 	// }
@@ -426,20 +463,22 @@ function UpdatePosition() {
 		window.clearInterval(monsterInterval);
 		backgroundAudio.pause();
 		window.alert("Loser!!");
+		document.getElementById("gameData").style.display='none';
+
 	}
-	else if(time_elapsed>= gameTime ) {
-		window.clearInterval(interval);
-		window.clearInterval(monsterInterval);
-		backgroundAudio.pause();
-		window.alert("Loser!!");
-		// if (score < 150)
-		// 	Alert.render("You can do better than " + score + " points!");
-		// else
-		// {
-		// 	Alert.render("<img src='Images/winner.gif' width='500' height='400'>");
-		// }
-		// return true;
-	}
+	// else if(time_elapsed>= gameTime ) {
+	// 	window.clearInterval(interval);
+	// 	window.clearInterval(monsterInterval);
+	// 	backgroundAudio.pause();
+	// 	window.alert("Loser!!");
+	// 	// if (score < 150)
+	// 	// 	Alert.render("You can do better than " + score + " points!");
+	// 	// else
+	// 	// {
+	// 	// 	Alert.render("<img src='Images/winner.gif' width='500' height='400'>");
+	// 	// }
+	// 	// return true;
+	// }
 	// else if(foodLeftToEat === 0){
 	// 	window.clearInterval(interval);
 	// 	window.clearInterval(monsterInterval);
