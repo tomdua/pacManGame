@@ -22,6 +22,14 @@ var monsterInterval;
 var monsterNum;
 var movingBonus;
 var pacLives;
+var backgroundAudio= new Audio("sound/PacMan.mp3");
+var gameTime;
+
+
+backgroundAudio.addEventListener('ended', function() {
+	this.currentTime = 0;
+	this.play();
+}, false);
 
   class monster{
 	constructor(x,y,url){
@@ -40,7 +48,8 @@ function Start() {
 	monsters.push(new monster(9,1,"img/mon3.png"));
 	monsters.push(new monster(9,9,"img/mon4.png"));
 	movingBonus=[0,0,"img/mon5.png"];
-
+	backgroundAudio.play();
+	gameTime= gameSettings["tGameIn"];
 	score = 0;
 	pacLives=5;
 	pac_color = "yellow";
@@ -57,7 +66,6 @@ function Start() {
 
 		for (var i = 0; i < 10; i++) {
 		board[i] = new Array();
-		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
 		for (var j = 0; j < 10; j++) {
 		if (
 			(i == 3 && j == 3) ||
@@ -401,13 +409,40 @@ function UpdatePosition() {
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
-	if (score >= 50 && time_elapsed <= 10) {
-		pac_color = "green";
-	}
-	if (score == 100) {
+	// if (score >= 50 && time_elapsed <= 10) {
+	// 	pac_color = "green";
+	// }
+	// if (score == 100) {
+	// 	window.clearInterval(interval);
+	// 	window.alert("Game completed");
+	// } 
+	if (pacLives === 0) {
 		window.clearInterval(interval);
-		window.alert("Game completed");
-	} else {
+		window.clearInterval(monsterInterval);
+		backgroundAudio.pause();
+		window.alert("Loser!!");
+	}
+	else if(time_elapsed>= gameTime ) {
+		window.clearInterval(interval);
+		window.clearInterval(monsterInterval);
+		backgroundAudio.pause();
+		window.alert("Loser!!");
+		// if (score < 150)
+		// 	Alert.render("You can do better than " + score + " points!");
+		// else
+		// {
+		// 	Alert.render("<img src='Images/winner.gif' width='500' height='400'>");
+		// }
+		// return true;
+	}
+	// else if(foodLeftToEat === 0){
+	// 	window.clearInterval(interval);
+	// 	window.clearInterval(monsterInterval);
+	// 	backgroundAudio.pause();
+	// 	// Alert.render("<img src='Images/winner.gif' width='500' height='400'>");
+	// 	// return true;
+	// }
+	else {
 		Draw();
 	}
 }
