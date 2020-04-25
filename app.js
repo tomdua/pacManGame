@@ -26,6 +26,8 @@ var backgroundAudio= new Audio("sound/PacMan.mp3");
 var gameTime;
 var bonusEaten=false;
 var seconds ;
+var board_width = 21;
+var board_height = 10;
 
 
 backgroundAudio.addEventListener('ended', function() {
@@ -78,7 +80,8 @@ function Start() {
 	pacLives=5;
 	pac_color = "yellow";
 	pacmanDirection =1;
-	var cnt = 100;
+	var cnt = board_width * board_height;
+
 	var food_remain = gameSettings["balls"];
 	monsterNum=gameSettings["monsters"];
 	var points5 = Math.floor(food_remain * 0.6);
@@ -88,15 +91,10 @@ function Start() {
 	var pacman_remain = 1;
 	//start_time = new Date(gameTime).getTime();
 
-		for (var i = 0; i < 10; i++) {
+		for (var i = 0; i < board_width; i++) {
 		board[i] = new Array();
-		for (var j = 0; j < 10; j++) {
-		if (
-			(i == 3 && j == 3) ||
-			(i == 3 && j == 4) ||
-			(i == 3 && j == 5) ||
-			(i == 6 && j == 1) ||
-			(i == 6 && j == 2)) 
+		for (var j = 0; j < board_height; j++) {
+		if (Wall(i,j)) 
 				board[i][j] = 4;
 			else {
 				var randomNum = Math.random();
@@ -115,7 +113,6 @@ function Start() {
 				cnt--;
 			}
 		}
-
 	}
 
 	while (points5 > 0) { 
@@ -152,6 +149,21 @@ function Start() {
 	
 }
 
+
+
+function Wall(i,j){
+	return (i ==8 && j == 3)||	(i ==9  && j == 3)||(i == 10 && j == 3) || (i == 11 && j == 3)||
+	(i ==8 && j == 7)||	(i ==9  && j == 7)||(i == 10 && j == 7) || (i == 11 && j == 7)
+	||(i ==8  && j == 6 ) || (i == 8 && j == 4)||(i ==11  && j == 6 ) || (i == 11 && j == 4) 
+	||(i == 12 && j == 4)||(i == 7 && j == 4)||(i == 12 && j == 6)||(i == 7 && j == 6)||
+	(i == 3 && j == 3)||(i == 3 && j == 4)||(i == 2 && j == 4)||
+	(i ==16 && j == 3)||(i == 16 && j == 4)||(i == 17 && j == 4)
+	||(i == 3 && j == 6)||(i == 3 && j == 7)||(i == 2 && j == 6)||
+	(i ==16 && j == 7)||(i == 16 && j == 6)||(i == 17 && j == 6)||
+	(i ==20 && j == 5)||(i == 20 && j == 6)||(i == 20 && j == 4)||
+	(i ==0 && j == 5)||(i == 0 && j == 6)||(i == 0 && j == 4)};
+
+
 function DefaultLocations(){
 	monsters[0].x=0;
 	monsters[0].y=0;
@@ -173,10 +185,10 @@ function DefaultLocations(){
 
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * 9 + 1);
-	var j = Math.floor(Math.random() * 9 + 1);
-	while (board[i][j] != 0) {
+	var j = Math.floor(Math.random() * (board_width -1) + 1);
+	while (board[i][j] != 0 ) {
 		i = Math.floor(Math.random() * 9 + 1);
-		j = Math.floor(Math.random() * 9 + 1);
+		j = Math.floor(Math.random() *  (board_width -1) + 1);
 	}
 	return [i, j];
 }
@@ -221,8 +233,8 @@ function Draw() {
 	lblScore.value = score;
 	//lblTime.value = time_elapsed;
 
-	for (var i = 0; i < 10; i++) {
-		for (var j = 0; j < 10; j++) {
+	for (var i = 0; i < board_width; i++) {
+		for (var j = 0; j < board_height; j++) {
 			var center = new Object();
 			center.x = i * 60 + 30;
 			center.y = j * 60 + 30;
@@ -376,7 +388,7 @@ function UpdatePositionMonster() {
 }
 
 function IsValid(x,y){
-	return (x<10 && x>=0 && y<10 && y>=0 && board[x][y]!==4);
+	return (x<board_width && x>=0 && y<board_height && y>=0 && board[x][y]!==4);
 }
 
 function getPossibleMoves(x,y){
@@ -410,7 +422,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 2) { //ArrowDown
-		if (shape.j < 9 && board[shape.i][shape.j + 1] != 4) {
+		if (shape.j < board_height-1 && board[shape.i][shape.j + 1] != 4) {
 			shape.j++;
 			pacmanDirection=2;
 		}
@@ -423,7 +435,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 4) {//ArrowRight
-		if (shape.i < 9 && board[shape.i + 1][shape.j] != 4) {
+		if (shape.i < board_width-1 && board[shape.i + 1][shape.j] != 4) {
 			shape.i++;
 			pacmanDirection=1;
 
