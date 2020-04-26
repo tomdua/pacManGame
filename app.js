@@ -64,7 +64,7 @@ function Start() {
 	leftBalls=food_remain;
 	monsterNum=gameSettings["monsters"];
 	if(monsterNum>1)
-	document.getElementById("redMonster").style.display='block';
+		document.getElementById("redMonster").style.display='block';
 	var points5 = Math.floor(food_remain * 0.6);
 	var points15 = Math.floor(food_remain* 0.3);
 	var points25 = Math.floor(food_remain * 0.1);
@@ -92,7 +92,7 @@ function Start() {
 			}
 		}
 	}
-
+//board//
 	while (points5 > 0) {
 		var emptyCell = findRandomEmptyCell(board);
 		board[emptyCell[0]][emptyCell[1]] = 1.1;
@@ -127,8 +127,6 @@ function Start() {
 
 }
 
-
-
 function Wall(i,j){
 	return (i ==8 && j == 3)||	(i ==9  && j == 3)||(i == 10 && j == 3) || (i == 11 && j == 3)||
 		(i ==8 && j == 7)||	(i ==9  && j == 7)||(i == 10 && j == 7) || (i == 11 && j == 7)
@@ -141,7 +139,12 @@ function Wall(i,j){
 		(i ==20 && j == 5)||(i == 20 && j == 6)||(i == 20 && j == 4)||
 		(i ==0 && j == 5)||(i == 0 && j == 6)||(i == 0 && j == 4)||
 		(i ==5 && j == 9)||(i ==4 && j == 9)||(i == 5 && j == 8)||(i == 6 && j == 9)||
-		(i ==4 && j == 0)||(i ==6 && j == 0)||(i == 5 && j == 1)||(i == 5 && j == 0)};
+		(i ==4 && j == 0)||(i ==6 && j == 0)||(i == 5 && j == 1)||(i == 5 && j == 0)||
+		(i==14)&& (j==1)||(i==14)&& (j==0)|| (i==14)&& (j==2)|| (i==15)&& (j==0)||
+		(i==14)&& (j==7)||(i==14)&& (j==9)|| (i==14)&& (j==8)|| (i==15)&& (j==9)||
+		(i==10)&& (j==0)||(i==10)&& (j==1)||(i==11)&& (j==1)||(i==9)&& (j==1) ||(i==10)&& (j==9)||
+		(i==9)&& (j==9)||(i==5)&& (j==5)||(i==5)&& (j==6)||(i==5)&& (j==4)||
+		(i==18 && j==1)||(i==18 && j==2)||(i==17 && j==1)};
 
 
 function DefaultLocations(){
@@ -161,8 +164,6 @@ function DefaultLocations(){
 	shape.j=emptyCell[1];
 
 }
-
-
 
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * (board_width-1) + 1);
@@ -207,6 +208,7 @@ function color() {
 	$('input[name=15PtKeyColor]').val(gameSettings["fifteenBall"]);
 	$('input[name=25PtKeyColor]').val(gameSettings["twentyFBall"]);
 }
+
 
 
 function Draw() {
@@ -258,14 +260,19 @@ function Draw() {
 				//draw walls
 			} else if (board[i][j] == 4) {
 				context.beginPath();
-				context.rect(center.x - 30, center.y - 30, 60, 60);
-				context.fillStyle = "grey"; //color
-				context.fill();
-			}			// draw apple
+				var wall = new Image();
+				wall.src = "img/wall.png";
+				context.drawImage(wall, i * 60, j * 60, 60, 60);
+				let promise = new Promise((resolve, reject) => {
+					wall.onload = () => resolve(image);
+					wall.onerror = reject;
+				});
+			}// draw apple
 			if(apple[0]=== i && apple[1]===j && !appleEaten) {
 				var appleImg = new Image();
 				appleImg.src = apple[2];
 				context.drawImage(appleImg, i * 60, j * 60, 50, 50);
+
 			}
 			//draw moving ghost
 			if(movingBonus[0]=== i && movingBonus[1]===j && !bonusEaten) {
@@ -452,14 +459,14 @@ function UpdatePosition() {
 				$('#gameData img:last-child').remove();
 				$('#gameData img:last-child').remove();
 			}else{
-			pacLives--;
-			$('#gameData img:last-child').remove();
-			score = score - 10;
+				pacLives--;
+				$('#gameData img:last-child').remove();
+				score = score - 10;
 			}
 			if (pacLives > 0) {
 				DefaultLocations();
-				 break;
-			 } 
+				break;
+			}
 		}
 	}
 
@@ -569,7 +576,7 @@ function closeAboutFunction() {
 
 function startNewGame() {
 	if(confirm('Do you want to start a new game?')){
-	//for(var i=0;i<(5-pacLives);i++)
+		//for(var i=0;i<(5-pacLives);i++)
 		//$("#gameData").append('<img src="img/heart.png" height="20" width="20">');
 		window.clearInterval(interval);
 		window.clearInterval(monsterInterval);

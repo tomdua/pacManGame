@@ -6,7 +6,7 @@ $("#registrationForm").validate({
     },
     userPassword: {
         required: true,
-        minlength: 8,
+        minlength: 6,
         passwordCheck: true
     },
     userFirstName: {
@@ -38,7 +38,7 @@ messages: {
      },
     userPassword: {
         required: "Please provide a password",
-        minlength: "Your password must be at least 8 characters long",
+        minlength: "Your password must be at least 6 characters long",
         passwordCheck: "Must contain at least one numeric and one alphabetic character"
     },
     userFirstName: {
