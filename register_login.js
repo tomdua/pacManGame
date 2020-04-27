@@ -87,18 +87,21 @@ return true;
 
 
 function validateLogin(){
+var found = false;
 var name = document.getElementById("userNameLogin");
 var password = document.getElementById("passwordLogin");
 for (i = 0; i < users.length; i++) {
 if (users[i]["userName"] == name.value && users[i]["password"] == password.value) {
     currentUser = users[i];
     $("#enterName").text(name.value);
+    found=true;
     name.value="";
     password.value="";
-    show('setting'); ;
+    show('setting'); 
     }          
 }
-alert("User name or password incorrect! Try again");
+if(found === false) 
+    alert("User name or password incorrect! Try again");
 }
 
 // $("#date").datepicker({

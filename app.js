@@ -25,7 +25,7 @@ var pacLives=0;
 var backgroundAudio= new Audio("sound/PacMan.mp3");
 var gameTime;
 var bonusEaten=false;
-var appleEaten=false;
+var appleEaten;
 var appleShow;
 var seconds ;
 var stopTime;
@@ -44,6 +44,10 @@ class monster{
 
 
 function Start() {
+	
+	// while( $('#gameData img').length <6)
+	// 	$("#gameData").append('<img src=""img/heart.png" height="20px" width="20px">');
+	pacLives= $('#gameData img').length;
 	for(var i=0;i<5-pacLives;i++)
 		$("#gameData").append('<img src="img/heart.png" height="20px" width="20px">');
 	document.getElementById("gameData").style.display='block';
@@ -61,6 +65,7 @@ function Start() {
 	startTime();
 	score = 0;
 	pacLives=5;
+	appleEaten=false;
 	appleShow=false;
 	pac_color = "yellow";
 	pacmanDirection =1;
@@ -274,7 +279,8 @@ function Draw() {
 				// 	wall.onerror = reject;
 				// });
 			}// draw apple
-			if(apple[0]=== i && apple[1]===j && !appleEaten) {
+
+			if(apple[0]=== i && apple[1]===j && board[i][j]!=4 && board[i][j]!=2 &&!appleEaten) {
 				var appleImg = new Image();
 				appleImg.src = apple[2];
 				context.drawImage(appleImg, i * 60, j * 60, 50, 50);
@@ -449,10 +455,12 @@ function UpdatePosition() {
 		bonusEaten=true;
 	}
 	//apple is showing after 10s
-	// if(seconds>gameTime-10)
-	// {
-	// 	appleEaten=true;
-	// }
+	 if(seconds%7===0)
+	 {
+		 apple[0]=Math.floor(Math.random() * (20));
+		 apple[1]=Math.floor(Math.random() * (9));
+	//	appleEaten=true;
+	 }
 	// else if(!appleShow){
 	// 	appleEaten=false;
 	// 	appleShow=true;
@@ -468,10 +476,10 @@ function UpdatePosition() {
 	//pacman got apple bonus
 	if(shape.i === apple[0] && shape.j === apple[1] && appleEaten==false)
 	{
-		context.font = "30px Comic Sans MS";
-		context.fillStyle = "red";
-		context.textAlign = "center";
-		context.fillText("Hello World", 30, 30);
+		// context.font = "30px Comic Sans MS";
+		// context.fillStyle = "red";
+		// context.textAlign = "center";
+		// context.fillText("Hello World", 30, 30);
 
 		score= score+100;
 		pacLives = pacLives+1;
