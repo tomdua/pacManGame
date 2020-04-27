@@ -4,6 +4,7 @@ $("#registrationForm").validate({
         required: true,
         unique: true
     },
+    
     userPassword: {
         required: true,
         minlength: 6,
@@ -21,13 +22,7 @@ $("#registrationForm").validate({
         required: true,
         email: true
     },
-    day: {
-        required: true
-    },
-    month: {
-        required: true
-    },
-    year: {
+    birthdate: {
         required: true
     },
 },
@@ -54,15 +49,9 @@ messages: {
         required: "Please enter your email",
         email: "Please enter a valid email address"
     },
-    day:{
-        required: "Please enter your email"
+    birthdate:{
+        required: "Please enter your birthdate"
     },
-    month:{
-        required: "Please enter your email"
-    },
-    year:{
-        required: "Please enter your email"
-    }
 },        
 submitHandler: function(form) {
     var uName = document.getElementById("userName");

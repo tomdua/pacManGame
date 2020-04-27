@@ -226,12 +226,27 @@ color: rgb(255, 255, 255);
     opacity: 0;
   }
 
+  label.error{
+    position:fixed;
+    background-repeat:no-repeat;
+    padding-left: 20px;
+    margin-left: .3em;
+    vertical-align:middle;
+    background-color: #FFEBE8;
+    border: solid 1px red;
+    width:400px;
+    height:20px;
+    font-style: italic;
+}
+
 
   input {
+    color: rgb(255, 255, 255);
       font-style: normal;
       font-size:18px;
       width:300px;
       background-image: url(./img/wall4.jpg);
+      background-attachment: fixed;
       border:none;
     border-bottom:1px solid whitesmoke;
     ;

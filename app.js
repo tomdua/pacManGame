@@ -28,6 +28,7 @@ var bonusEaten=false;
 var appleEaten=false;
 var appleShow;
 var seconds ;
+var stopTime;
 var board_width = 21;
 var board_height = 10;
 
@@ -445,14 +446,22 @@ function UpdatePosition() {
 		bonusEaten=true;
 	}
 	//apple is showing after 10s
-	if(seconds>gameTime-10)
-	{
-		appleEaten=true;
-	}
-	else if(!appleShow){
-		appleEaten=false;
-		appleShow=true;
-	}
+	// if(seconds>gameTime-10)
+	// {
+	// 	appleEaten=true;
+	// }
+	// else if(!appleShow){
+	// 	appleEaten=false;
+	// 	appleShow=true;
+	// }
+	// if(seconds%10!=0)
+	// {
+	// 	appleEaten=tue;
+	// }
+	// else if(!appleShow){
+	// 	appleEaten=false;
+	// 	appleShow=true;
+	// }
 	//pacman got apple bonus
 	if(shape.i === apple[0] && shape.j === apple[1] && appleEaten==false)
 	{
@@ -489,6 +498,7 @@ function UpdatePosition() {
 	}
 
 	if (pacLives <= 0) {
+		clearTimeout(stopTime);
 		window.clearInterval(interval);
 		window.clearInterval(monsterInterval);
 		backgroundAudio.pause();
@@ -497,6 +507,7 @@ function UpdatePosition() {
 
 	}
 	else if(leftBalls-1 === 0){
+		clearTimeout(stopTime);
 		window.clearInterval(interval);
 		window.clearInterval(monsterInterval);
 		backgroundAudio.pause();
@@ -518,10 +529,11 @@ backgroundAudio.addEventListener('ended', function() {
 
 
 function startTime(){
+	
 	seconds = gameTime, $seconds = document.querySelector('#lblTime');
 	(function countdown() {
 		$seconds.textContent = seconds + 's'
-		if(seconds --> 0) setTimeout(countdown, 1000)
+		if(seconds --> 0) stopTime=setTimeout(countdown, 1000)
 		if(seconds==(-1)){
 			if(score<100){
 				window.alert("You can do better than " + score + " points!");
@@ -529,6 +541,7 @@ function startTime(){
 				window.clearInterval(interval);
 				window.clearInterval(monsterInterval);
 				backgroundAudio.pause();
+				clearTimeout(stopTime);
 
 			}
 			else{
@@ -537,6 +550,7 @@ function startTime(){
 				window.clearInterval(interval);
 				window.clearInterval(monsterInterval);
 				backgroundAudio.pause();
+				clearTimeout(stopTime);
 			}
 
 		}
@@ -593,8 +607,7 @@ function closeAboutFunction() {
 
 function startNewGame() {
 	if(confirm('Do you want to start a new game?')){
-		//for(var i=0;i<(5-pacLives);i++)
-		//$("#gameData").append('<img src="img/heart.png" height="20" width="20">');
+		clearTimeout(stopTime);
 		window.clearInterval(interval);
 		window.clearInterval(monsterInterval);
 		backgroundAudio.pause();
