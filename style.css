@@ -14,6 +14,11 @@ body {
   h2{
     color: rgb(255, 255, 255);
   }
+  #canvas{
+      box-sizing: border-box;
+      position: relative;
+      border: 8px  double royalblue;"
+  }
   
  #app {
   text-align: center;
@@ -196,11 +201,13 @@ color: rgb(255, 255, 255);
 
   .buttonRegular{
       text-transform: uppercase;
+      padding: 0.7em;
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
       font-size: 1rem;
       border-color: #343738;
       color:white;
+
       box-shadow: 0 0 40px 40px tomato inset, 0 0 0 0 #3498db;
       transition: all 150ms ease-in-out;
       border-radius: 0.6em;
@@ -221,16 +228,21 @@ color: rgb(255, 255, 255);
 
 
   input {
-    font-size:18px;
-    width:300px;
-    background-color: #ffffff;
-    border:none;
-    border-bottom:1px solid #757575;
+      font-style: normal;
+      font-size:18px;
+      width:300px;
+      background-image: url(./img/wall4.jpg);
+      border:none;
+    border-bottom:1px solid whitesmoke;
+    ;
   }
   input:focus{ 
       outline:none; 
 }
-
+    .butt{
+    border-bottom-color: white;
+    color:white;
+}
 
 #gameDetails{
     display: block;
