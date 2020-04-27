@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="./jquery-3.4.1.slim.min.js"></script>
+    
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"
             type="text/javascript"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/additional-methods.min.js"
             type="text/javascript"></script>
+         
     <title>Play Pac-Man Game</title>
 
 </head>
@@ -31,13 +33,13 @@
     <nav>
         <ul>
             <br>
-            <li><a href="#welcome" onclick="return show('welcome','register','login','setting','game');">Welcome</a></li>
+            <li><a href="#welcome" onclick="show('welcome');">Welcome</a></li>
             <br>
-            <li><a href="#register" onclick="return show('register','login','setting','game','welcome');">Register</a></li>
+            <li><a href="#register" onclick="show('register');">Register</a></li>
             <br>
-            <li><a href="#login" onclick="return show('login','setting','game','welcome','register');">Login</a></li>
+            <li><a href="#login" onclick="show('login');">Login</a></li>
             <br>
-            <li><a href="#setting" onclick="return show('setting','game','welcome','register','login');">Settings</a></li>
+            <li><a href="#setting" onclick="show('setting');">Settings</a></li>
             <br>
             <li><a href="#about" onclick="aboutFunction()">About</a></li>
         </ul>
@@ -46,16 +48,16 @@
 
 
     <main>
-        <div id="welcome" style="display:block">
+        <div id="welcome" class="context" style="display:block">
             <img src="img/welcome.png" />
             <h2>Let's play!</h2>
             <button   type="button"  class="buttonWelcom"
-                      onclick="return show('register','login','setting','game','welcome');">Registration</button>
-            <button type="button" class="buttonWelcom" onclick="return show('login','setting','game','welcome','register');">Login</button>
+                      onclick="show('register');">Registration</button>
+            <button type="button" class="buttonWelcom" onclick="show('login');">Login</button>
         </div>
 
 
-        <div id="register" style="display:none">
+        <div id="register" class="context" style="display:none">
             <h2><b>Register</b></h2>
             <img src="img/register.png" />
             <br>
@@ -82,7 +84,7 @@
             </form>
         </div>
 
-        <div id="login" style="display:none">
+        <div id="login" class="context" style="display:none">
             <h2><b>Log In</b></h2>
             <img src="img/login.png" />
             <br>
@@ -99,7 +101,7 @@
         </div>
 
 
-        <div id="setting" style="display:none">
+        <div id="setting" class="context" style="display:none">
 
             <h2>Game Settings:</h2>
             <br>
@@ -145,7 +147,7 @@
             </form>
         </div>
 
-        <div id="game" style="display:none">
+        <div id="game" class="context" style="display:none">
             <br>
             <input type="button" id="NewGame" class="buttonRegular" value="Start New" onclick="startNewGame()">
 
@@ -161,7 +163,7 @@
             <canvas id="canvas" height="600" width="1250"></canvas>
         </div>
 
-        <dialog id="about">
+        <dialog id="about" style="text-align: left;">
             <button type="button" style="float: right;" onclick="closeAboutFunction()">X</button>
             <b> Presentors: Tom Duany & </b>
             <b>Almog Sarafian</b>
@@ -177,15 +179,15 @@
       <h5>Hello </h5><b id="enterName" style="color: rgb(243, 140, 4);">New User</b>
       <h5>Lets Play!</h5>
       <div id="gameData" style="display: none;">
-      <span style="color: aliceblue;">SCORE: </span>
-      <input id="lblScore" type="text" style="width: 80%;"/>
+      <span style="color: aliceblue;">Score: </span>
+      <input id="lblScore" type="text" style="width: 80%; color: rgb(243, 140, 4);"/>
       <br>
       <br>
-      <span style="color: aliceblue;">TIME:</span>
+      <span style="color: aliceblue;">Time:</span>
       <div id="lblTime" style="color: rgb(243, 140, 4);"></div>
       <br>
       <h4 id="redMonster" style="color: rgb(243, 52, 4); display: none;">Watch out for the red monster!</h4>
-      <span id="lives" style="color: aliceblue;">LIVES: </span>
+      <span id="lives" style="color: aliceblue;">Lifes: </span>
       <br>
       </div>
       

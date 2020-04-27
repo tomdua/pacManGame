@@ -34,7 +34,7 @@ messages: {
     userPassword: {
         required: "Please provide a password",
         minlength: "Your password must be at least 6 characters long",
-        passwordCheck: "Must contain at least one numeric and one alphabetic character"
+        passwordCheck: "At least one numeric and one alphabetic"
     },
     userFirstName: {
         required: "Please enter your first name",
@@ -64,7 +64,7 @@ submitHandler: function(form) {
     userLastName.value="";
     userEmail.value="";
     alert("You registered successfuly!");
-    return show('login','setting','about','welcome','register');           
+    show('login');           
 }
 });
 
@@ -95,33 +95,39 @@ if (users[i]["userName"] == name.value && users[i]["password"] == password.value
     $("#enterName").text(name.value);
     name.value="";
     password.value="";
-    return show('setting','game','welcome','register','login'); ;
+    show('setting'); ;
     }          
 }
 alert("User name or password incorrect! Try again");
 }
 
-$("#datepicker").datepicker({
-showOn: "button",
-buttonImage: "http://jqueryui.com/demos/images/calendar.gif",
-buttonImageOnly: true,
-onSelect: function(dateText, inst) {
-var datePieces = dateText.split('/');
-var month = datePieces[0];
-var day = datePieces[1];
-var year = datePieces[2];
+// $("#date").datepicker({
+// showOn: "button",
+// buttonImage: "http://jqueryui.com/demos/images/calendar.gif",
+// buttonImageOnly: true,
+// onSelect: function(dateText, inst) {
+// var datePieces = dateText.split('/');
+// var month = datePieces[0];
+// var day = datePieces[1];
+// var year = datePieces[2];
 
-$('select#month').val(month);
-$('select#day').val(day);
-$('select#year').val(year);
+// $('select#month').val(month);
+// $('select#day').val(day);
+// $('select#year').val(year);
 
-}
-});
+// }
+// });
+
+
+// $( function() {
+//     $( "#date" ).datepicker();
+//   } );
+
 
 function restFunction() {
 document.getElementById("registrationForm").reset();
 }
 
-function userEmail() {
-    document.getElementById("userEmail").datepicker();
-}
+// function userEmail() {
+//     document.getElementById("userEmail").datepicker();
+// }

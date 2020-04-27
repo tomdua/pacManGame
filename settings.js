@@ -70,7 +70,7 @@ $("#settingsForm").validate({
         else {
             updateSttings();
             Start();
-            return show('game','welcome','register','login','setting');
+            show('game');
         }
         return false;
     }

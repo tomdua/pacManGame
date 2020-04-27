@@ -41,6 +41,8 @@ class monster{
 	}
 }
 
+
+
 function Start() {
 	for(var i=0;i<5-pacLives;i++)
 		$("#gameData").append('<img src="img/heart.png" height="20px" width="20px">');
@@ -52,7 +54,7 @@ function Start() {
 	monsters.push(new monster(20,0,"img/mon2.png"));
 	monsters.push(new monster(20,9,"img/mon3.png"));
 	monsters.push(new monster(0,9,"img/mon4.png"));
-	movingBonus=[11,4,"img/mon5.png"];
+	movingBonus=[9,4,"img/mon5.png"];
 	apple = [10,4,"img/apple.png"];
 	//backgroundAudio.play();
 	gameTime= gameSettings["time"];
@@ -125,7 +127,7 @@ function Start() {
 		},
 		false
 	);
-	interval = setInterval(UpdatePosition, 250);
+	interval = setInterval(UpdatePosition, 150);
 	monsterInterval =setInterval(UpdatePositionMonster,  400);
 
 }
@@ -215,7 +217,8 @@ function color() {
 
 
 function Draw() {
-	canvas.width = canvas.width; //clean board
+	context.clearRect(0, 0, canvas.width, canvas.height);
+//	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	//lblTime.value = time_elapsed;
 
@@ -266,10 +269,10 @@ function Draw() {
 				var wall = new Image();
 				wall.src = "img/wall.png";
 				context.drawImage(wall, i * 60, j * 60, 60, 60);
-				let promise = new Promise((resolve, reject) => {
-					wall.onload = () => resolve(image);
-					wall.onerror = reject;
-				});
+				// let promise = new Promise((resolve, reject) => {
+				// 	wall.onload = () => resolve(image);
+				// 	wall.onerror = reject;
+				// });
 			}// draw apple
 			if(apple[0]=== i && apple[1]===j && !appleEaten) {
 				var appleImg = new Image();
@@ -426,15 +429,15 @@ function UpdatePosition() {
 		}
 	}
 	//balls color
-	if (board[shape.i][shape.j] == 1.1) {
+	if (board[shape.i][shape.j] === 1.1) {
 		score=score+5;
 		leftBalls--;
 	}
-	if (board[shape.i][shape.j] == 1.2) {
+	if (board[shape.i][shape.j] === 1.2) {
 		score=score+15;
 		leftBalls--;
 	}
-	if (board[shape.i][shape.j] == 1.3) {
+	if (board[shape.i][shape.j] === 1.3) {
 		score=score+25;
 		leftBalls--;
 
@@ -580,13 +583,20 @@ function keyCodeLeft(event) {
 }
 
 
-function show(shown, hidden1, hidden2, hidden3, hidden4){
+function show(shown){
+	var menus= document.getElementsByClassName("context");
+	//var target = document.getElementById(shown);  
+	for(var i=0;i<menus.length;i++)
+		menus[i].style.display = "none";
+	
 	document.getElementById(shown).style.display='block';
-	document.getElementById(hidden1).style.display='none';
-	document.getElementById(hidden2).style.display='none';
-	document.getElementById(hidden3).style.display='none';
-	document.getElementById(hidden4).style.display='none';
-	return false;
+	if(shown!='game'){
+		document.getElementById("gameData").style.display='none';
+		clearTimeout(stopTime);
+		window.clearInterval(interval);
+		window.clearInterval(monsterInterval);
+		backgroundAudio.pause();
+	}
 }
 
 
@@ -612,6 +622,6 @@ function startNewGame() {
 		window.clearInterval(monsterInterval);
 		backgroundAudio.pause();
 		document.getElementById("gameData").style.display='none';
-		return show('setting','game','welcome','register','login');
+		show('setting');
 	}
 }
