@@ -26,6 +26,7 @@ var backgroundAudio= new Audio("sound/PacMan.mp3");
 var gameTime;
 var bonusEaten=false;
 var appleEaten=false;
+var appleShow=false;
 var seconds ;
 var board_width = 21;
 var board_height = 10;
@@ -50,7 +51,7 @@ function Start() {
 	monsters.push(new monster(20,0,"img/mon2.png"));
 	monsters.push(new monster(20,9,"img/mon3.png"));
 	monsters.push(new monster(0,9,"img/mon4.png"));
-	movingBonus=[0,0,"img/mon5.png"];
+	movingBonus=[11,4,"img/mon5.png"];
 	apple = [10,4,"img/apple.png"];
 	//backgroundAudio.play();
 	gameTime= gameSettings["time"];
@@ -60,7 +61,7 @@ function Start() {
 	pac_color = "yellow";
 	pacmanDirection =1;
 	var cnt = board_width * board_height;
-	var food_remain = gameSettings["balls"];
+	var food_remain = 5;//gameSettings["balls"];
 	leftBalls=food_remain;
 	monsterNum=gameSettings["monsters"];
 	if(monsterNum>1)
@@ -261,7 +262,7 @@ function Draw() {
 				context.rect(center.x - 30, center.y - 30, 60, 60);
 				context.fillStyle = "grey"; //color
 				context.fill();
-			}			// draw apple
+			}	// draw apple
 			if(apple[0]=== i && apple[1]===j && !appleEaten) {
 				var appleImg = new Image();
 				appleImg.src = apple[2];
@@ -285,23 +286,57 @@ function Draw() {
 }
 
 
+function UpdateBonusPosition(){
+	var maxDis = 0, mDist, maxX, maxY;
+	if (IsValid(movingBonus[0] + 1, movingBonus[1])) {
+		mDist = CheckDistance(movingBonus[0] + 1, movingBonus[1]);
+		if (mDist > maxDis) {
+			maxDis = mDist;
+			maxX = movingBonus[0] + 1;
+			maxY = movingBonus[1];
+		}
+	}//left
+	if (IsValid(movingBonus[0] - 1, movingBonus[1])) {
+		mDist = CheckDistance(movingBonus[0] - 1, movingBonus[1]);
+		if (mDist > maxDis) {
+			maxDis = mDist;
+			maxX = movingBonus[0] - 1;
+			maxY = movingBonus[1];
+		}
+	}//down
+	if (IsValid(movingBonus[0], movingBonus[1] + 1)) {
+		mDist = CheckDistance(movingBonus[0], movingBonus[1]+1);
+		if (mDist > maxDis) {
+			maxDis = mDist;
+			maxX = movingBonus[0];
+			maxY = movingBonus[1] + 1;
+		}
+	}//up
+	if (IsValid(movingBonus[0], movingBonus[1] - 1)) {
+		mDist = CheckDistance(movingBonus[0], movingBonus[1]-1);
+		if (mDist > maxDis) {
+			maxDis = mDist;
+			maxX = movingBonus[0];
+			maxY = movingBonus[1] - 1;
+		}
+	}
+
+	movingBonus[0] = maxX;
+	movingBonus[1] = maxY;
+	maxDis = 0;
+	}
+
+
+
+
 
 function UpdatePositionMonster() {
 	var monster, minDistance = Number.POSITIVE_INFINITY, mDist, minX, minY;
-	var randMovement, optionalMoves, moveIndex;
-	//move moving character
-	optionalMoves=getPossibleMoves(movingBonus[0],movingBonus[1]);
-	if(optionalMoves.length !==0){
-		moveIndex= Math.floor(Math.random() * Math.floor(optionalMoves.length));
-		movingBonus[0]=optionalMoves[moveIndex][0];
-		movingBonus[1]=optionalMoves[moveIndex][1];
-	}
+		UpdateBonusPosition();
 	//move Monsters
 	for (var i = 0; i < monsterNum; i++) {
-		randMovement = Math.random();
 		monster = monsters[i];
-		if (randMovement > 0.2) {
-			//right
+	
 			if (IsValid(monster.x + 1, monster.y)) {
 				mDist = CheckDistance(monster.x + 1, monster.y);
 				if (mDist < minDistance) {
@@ -334,23 +369,8 @@ function UpdatePositionMonster() {
 					minY = monster.y - 1;
 				}
 			}
-		}
-		else {
-			optionalMoves = getPossibleMoves(monster.x, monster.y);
-			if(optionalMoves.length>0) {
-				moveIndex = Math.floor(Math.random() * Math.floor(optionalMoves.length));
-				minX=optionalMoves[moveIndex][0];
-				minY=optionalMoves[moveIndex][1];
-			}
-		}
-		if ((i === 0) ||
-			(i === 1 && (minX !== monsters[0].x || minY !== monsters[0].y)) ||
-			(i === 2 && (minX !== monsters[0].x || minY !== monsters[0].y) && (minX !== monsters[1].x || minY !== monsters[1].y))
-			|| (minX !== movingBonus[0] || minY!== movingBonus[1]) ) {
 			monster.x = minX;
 			monster.y = minY;
-		}
-		//    monster caught pacman
 		minDistance = Number.POSITIVE_INFINITY;
 	}
 }
@@ -364,24 +384,24 @@ function IsValid(x,y){
 	return (x<board_width && x>=0 && y<board_height && y>=0 && board[x][y]!==4);
 }
 
-function getPossibleMoves(x,y){
-	var possibleMoves = [];
-	if (IsValid(x,y - 1)){
-		possibleMoves.push([x,y-1]);
-	}
-	if (IsValid(x,y + 1)){
-		possibleMoves.push([x,y+1]);
-	}
+// function GetPossibleMoves(x,y){
+// 	var possibleMoves = [];
+// 	if (IsValid(x,y - 1)){
+// 		possibleMoves.push([x,y-1]);
+// 	}
+// 	if (IsValid(x,y + 1)){
+// 		possibleMoves.push([x,y+1]);
+// 	}
 
-	if (IsValid(x+1,y)){
-		possibleMoves.push([x+1,y]);
-	}
+// 	if (IsValid(x+1,y)){
+// 		possibleMoves.push([x+1,y]);
+// 	}
 
-	if (IsValid(x-1,y)){
-		possibleMoves.push([x-1,y]);
-	}
-	return possibleMoves;
-}
+// 	if (IsValid(x-1,y)){
+// 		possibleMoves.push([x-1,y]);
+// 	}
+// 	return possibleMoves;
+// }
 
 
 
@@ -434,13 +454,28 @@ function UpdatePosition() {
 		score+=50;
 		bonusEaten=true;
 	}
-
+	//apple is showing after 10s
+	if(seconds>gameTime-10)
+	{
+		appleEaten=true;
+	}
+	else if(!appleShow){
+		appleEaten=false;
+		appleShow=true;
+	}
+	//pacman got apple bonus
 	if(shape.i === apple[0] && shape.j === apple[1] && appleEaten==false)
 	{
+		context.font = "30px Comic Sans MS";
+		context.fillStyle = "red";
+		context.textAlign = "center";
+		context.fillText("Hello World", 30, 30);
+
 		score= score+100;
 		pacLives = pacLives+1;
 		$("#gameData").append('<img src="img/heart.png" height="20" width="20">');
 		appleEaten=true;
+
 	}
 	board[shape.i][shape.j] = 2;
 	for(var m =0; m < monsterNum; m++) {
@@ -471,13 +506,12 @@ function UpdatePosition() {
 		document.getElementById("gameData").style.display='none';
 
 	}
-	if(leftBalls === 0){
+	else if(leftBalls-1 === 0){
 		window.clearInterval(interval);
 		window.clearInterval(monsterInterval);
 		backgroundAudio.pause();
 		window.alert("Winner!!!");
 		document.getElementById("gameData").style.display='none';
-
 	}
 	else {
 		Draw();

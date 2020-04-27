@@ -71,8 +71,8 @@ aside h5{
 
  header {
   border: 1px solid #ffffff;
-  background-color: rgb(39, 40, 41);
-    background-repeat:no-repeat;
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) );
+  background-repeat:no-repeat;
     background-size:100% 100%;
     color: rgb(255, 255, 255);
     padding-top: 20px;
