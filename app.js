@@ -29,7 +29,7 @@ var appleEaten;
 var appleShow;
 var seconds ;
 var stopTime;
-var board_width = 21;
+var board_width = 20;
 var board_height = 10;
 
 class monster{
@@ -44,19 +44,20 @@ class monster{
 
 
 function Start() {
-	
-	// while( $('#gameData img').length <6)
-	// 	$("#gameData").append('<img src=""img/heart.png" height="20px" width="20px">');
 	pacLives= $('#gameData img').length;
 	for(var i=0;i<5-pacLives;i++)
 		$("#gameData").append('<img src="img/heart.png" height="20px" width="20px">');
 	document.getElementById("gameData").style.display='block';
+	document.getElementById("showSetting").style.display='block';
+	//document.getElementById("showSetting").style.width='30%';
+	document.getElementById("nav").style.display='none';
+
 	board = new Array();
-	color();
+	initSettings();
 	monsters = [];
 	monsters.push(new monster(0,0,"img/mon1.png"));
-	monsters.push(new monster(20,0,"img/mon2.png"));
-	monsters.push(new monster(20,9,"img/mon3.png"));
+	monsters.push(new monster(19,0,"img/mon2.png"));
+	monsters.push(new monster(19,9,"img/mon3.png"));
 	monsters.push(new monster(0,9,"img/mon4.png"));
 	movingBonus=[9,4,"img/mon5.png"];
 	apple = [10,4,"img/apple.png"];
@@ -69,15 +70,17 @@ function Start() {
 	appleShow=false;
 	pac_color = "yellow";
 	pacmanDirection =1;
-	var cnt = board_width * board_height;
-	var food_remain = 5;//gameSettings["balls"];
-	leftBalls=food_remain;
+	var cnt = 200;
+	var food_remain = gameSettings["balls"];
 	monsterNum=gameSettings["monsters"];
 	if(monsterNum>1)
 		document.getElementById("redMonster").style.display='block';
+	else document.getElementById("redMonster").style.display='none';
+
 	var points5 = Math.floor(food_remain * 0.6);
 	var points15 = Math.floor(food_remain* 0.3);
 	var points25 = Math.floor(food_remain * 0.1);
+	leftBalls=points15+points25+points5;
 	var pacman_remain = 1;
 	for (var i = 0; i < board_width; i++) {
 		board[i] = new Array();
@@ -90,7 +93,7 @@ function Start() {
 					points5--;
 					board[i][j] = 1.1;
 				} else if ((randomNum < (1.0 * (pacman_remain + points5)) / cnt) && !((i === 0 && j === 0)
-					|| (i === 20 && j === 9) || (i === 20 && j === 0) || (i === 0 && j === 9))) {
+					|| (i === 19 && j === 9) || (i === 19 && j === 0) || (i === 0 && j === 9))) {
 					shape.i = i;
 					shape.j = j;
 					pacman_remain--;
@@ -102,7 +105,7 @@ function Start() {
 			}
 		}
 	}
-//board//
+//init food on board
 	while (points5 > 0) {
 		var emptyCell = findRandomEmptyCell(board);
 		board[emptyCell[0]][emptyCell[1]] = 1.1;
@@ -132,8 +135,11 @@ function Start() {
 		},
 		false
 	);
+	if(IsValid(shape.i,shape.j)){
 	interval = setInterval(UpdatePosition, 150);
 	monsterInterval =setInterval(UpdatePositionMonster,  400);
+}
+else Start();
 
 }
 
@@ -154,21 +160,22 @@ function Wall(i,j){
 		(i==14)&& (j==7)||(i==14)&& (j==9)|| (i==14)&& (j==8)|| (i==15)&& (j==9)||
 		(i==10)&& (j==0)||(i==10)&& (j==1)||(i==11)&& (j==1)||(i==9)&& (j==1) ||(i==10)&& (j==9)||
 		(i==9)&& (j==9)||(i==5)&& (j==5)||(i==5)&& (j==6)||(i==5)&& (j==4)||
-		(i==18 && j==1)||(i==18 && j==2)||(i==17 && j==1)};
-
-
+		(i==18 && j==1)||(i==18 && j==2)||(i==17 && j==1)||(i==19 && j==5)
+	};
+	
+	
 function DefaultLocations(){
 	monsters[0].x=0;
 	monsters[0].y=0;
-	monsters[1].x=20;
+	monsters[1].x=19;
 	monsters[1].y=0;
-	monsters[2].x=20;
+	monsters[2].x=19;
 	monsters[2].y=9;
 	monsters[3].x=0;
 	monsters[3].y=9;
 	board[shape.i][shape.j]=0;
 	var emptyCell = findRandomEmptyCell(board);
-	while((emptyCell[0] === 0 && emptyCell[1] === 0) || (emptyCell[0] === 20 && emptyCell[1] === 0) || (emptyCell[0] === 20 && emptyCell[1] === 9) || (emptyCell[0] === 0 && emptyCell[1] === 9))
+	while((emptyCell[0] === 0 && emptyCell[1] === 0) || (emptyCell[0] === 19 && emptyCell[1] === 0) || (emptyCell[0] === 19 && emptyCell[1] === 9) || (emptyCell[0] === 0 && emptyCell[1] === 9))
 		emptyCell = findRandomEmptyCell(board);
 	shape.i=emptyCell[0];
 	shape.j=emptyCell[1];
@@ -213,10 +220,16 @@ function GetKeyPressed() {
 	}
 }
 
-function color() {
+function initSettings() {
 	$('input[name=5PtKeyColor]').val(gameSettings["fiveBall"]);
 	$('input[name=15PtKeyColor]').val(gameSettings["fifteenBall"]);
 	$('input[name=25PtKeyColor]').val(gameSettings["twentyFBall"]);
+	$('span[name=upKey]').text(gameSettings["up"]);
+	$('span[name=downKey]').text(gameSettings["down"]);
+	$('span[name=leftKey]').text(gameSettings["left"]);
+	$('span[name=rightKey]').text(gameSettings["right"]);
+	$('span[name=ballsNum]').text(gameSettings["balls"]);
+	$('span[name=monNum]').text(gameSettings["monsters"]);
 }
 
 
@@ -270,10 +283,17 @@ function Draw() {
 				context.fill();
 				//draw walls
 			} else if (board[i][j] == 4) {
+				// context.beginPath();
+				// context.strokeStyle = "#fff";
+				// context.strokeRect(center.x - 30, center.y - 30, 60, 60);
+				// context.fill();
+				
+				
+				
 				context.beginPath();
 				var wall = new Image();
 				wall.src = "img/wall.png";
-				context.drawImage(wall, i * 60, j * 60, 60, 60);
+				context.drawImage(wall,center.x - 30, center.y - 30, 60, 60);
 				// let promise = new Promise((resolve, reject) => {
 				// 	wall.onload = () => resolve(image);
 				// 	wall.onerror = reject;
@@ -457,7 +477,7 @@ function UpdatePosition() {
 	//apple is showing after 10s
 	 if(seconds%7===0)
 	 {
-		 apple[0]=Math.floor(Math.random() * (20));
+		 apple[0]=Math.floor(Math.random() * (19));
 		 apple[1]=Math.floor(Math.random() * (9));
 	//	appleEaten=true;
 	 }
@@ -493,7 +513,7 @@ function UpdatePosition() {
 			//stronger monster
 			if(m === 1){
 				pacLives=pacLives-2;
-				score = score - 10;
+				score = score - 20;
 				$('#gameData img:last-child').remove();
 				$('#gameData img:last-child').remove();
 			}else{
@@ -517,7 +537,7 @@ function UpdatePosition() {
 		document.getElementById("gameData").style.display='none';
 
 	}
-	else if(leftBalls-1 === 0){
+	else if(leftBalls === 0){
 		clearTimeout(stopTime);
 		window.clearInterval(interval);
 		window.clearInterval(monsterInterval);
@@ -540,7 +560,6 @@ backgroundAudio.addEventListener('ended', function() {
 
 
 function startTime(){
-	
 	seconds = gameTime, $seconds = document.querySelector('#lblTime');
 	(function countdown() {
 		$seconds.textContent = seconds + 's'
@@ -623,6 +642,8 @@ function closeAboutFunction() {
 	document.getElementById("about").close();
 }
 
+
+
 function startNewGame() {
 	if(confirm('Do you want to start a new game?')){
 		clearTimeout(stopTime);
@@ -630,6 +651,9 @@ function startNewGame() {
 		window.clearInterval(monsterInterval);
 		backgroundAudio.pause();
 		document.getElementById("gameData").style.display='none';
+		document.getElementById("showSetting").style.display='none';
+		document.getElementById("nav").style.display='block';
+
 		show('setting');
 	}
 }
