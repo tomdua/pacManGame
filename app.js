@@ -3,11 +3,10 @@ var shape = new Object();
 var board;
 var score;
 var pac_color;
-var start_time;
-var time_elapsed;
 var interval;
 var user = {userName: "p", password: "p"};
 var users= new Array();
+var keysDown;
 users.push(user);
 var gameSettings;
 var pacmanDirection;
@@ -31,6 +30,7 @@ var seconds ;
 var stopTime;
 var board_width = 20;
 var board_height = 10;
+
 
 class monster{
 	constructor(x,y,url){
@@ -61,7 +61,7 @@ function Start() {
 	monsters.push(new monster(0,9,"img/mon4.png"));
 	movingBonus=[9,4,"img/mon5.png"];
 	apple = [10,4,"img/apple.png"];
-	//backgroundAudio.play();
+	backgroundAudio.play();
 	gameTime= gameSettings["time"];
 	startTime();
 	score = 0;
@@ -121,7 +121,7 @@ function Start() {
 		board[emptyCell[0]][emptyCell[1]] = 1.3;
 		points25--;
 	}
-	keysDown = {};
+	keysDown = { };
 	addEventListener("keydown",function(e) {
 			if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
 				e.preventDefault();
@@ -173,7 +173,7 @@ function DefaultLocations(){
 	monsters[2].y=9;
 	monsters[3].x=0;
 	monsters[3].y=9;
-	board[shape.i][shape.j]=0;
+	board[shape.i][shape.j] = 0;
 	var emptyCell = findRandomEmptyCell(board);
 	while((emptyCell[0] === 0 && emptyCell[1] === 0) || (emptyCell[0] === 19 && emptyCell[1] === 0) || (emptyCell[0] === 19 && emptyCell[1] === 9) || (emptyCell[0] === 0 && emptyCell[1] === 9))
 		emptyCell = findRandomEmptyCell(board);
@@ -236,9 +236,7 @@ function initSettings() {
 
 function Draw() {
 	context.clearRect(0, 0, canvas.width, canvas.height);
-//	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
-	//lblTime.value = time_elapsed;
 
 	for (var i = 0; i < board_width; i++) {
 		for (var j = 0; j < board_height; j++) {
@@ -249,7 +247,6 @@ function Draw() {
 			if (board[i][j] == 2) {
 				context.beginPath();
 				context.arc(center.x, center.y, 20, ((1.65 + 0.5 * pacmanDirection) % 2) * Math.PI, ((1.35 + 0.5 * pacmanDirection) % 2) * Math.PI);
-//				context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
 				context.lineTo(center.x, center.y);
 				context.fillStyle = pac_color; //color
 				context.fill();
@@ -283,21 +280,20 @@ function Draw() {
 				context.fill();
 				//draw walls
 			} else if (board[i][j] == 4) {
-				// context.beginPath();
-				// context.strokeStyle = "#fff";
-				// context.strokeRect(center.x - 30, center.y - 30, 60, 60);
-				// context.fill();
-				
-				
-				
 				context.beginPath();
-				var wall = new Image();
-				wall.src = "img/wall.png";
-				context.drawImage(wall,center.x - 30, center.y - 30, 60, 60);
-				// let promise = new Promise((resolve, reject) => {
-				// 	wall.onload = () => resolve(image);
-				// 	wall.onerror = reject;
-				// });
+				var gradient = context.createLinearGradient(140, 190, 170, 120);
+				gradient.addColorStop('0', "magenta");
+				gradient.addColorStop('0.5' ,"blue");
+				gradient.addColorStop('1', "red");
+
+				context.strokeStyle = gradient;
+				//context.strokeStyle = 'white';
+				context.lineWidth = 5;
+				//context.strokeRect(20, 20, 150, 100);
+
+				context.strokeRect(center.x - 30, center.y - 30, 60, 60);
+				context.fill();
+
 			}// draw apple
 
 			if(apple[0]=== i && apple[1]===j && board[i][j]!=4 && board[i][j]!=2 &&!appleEaten) {
@@ -363,14 +359,9 @@ function UpdateBonusPosition(){
 	movingBonus[1] = maxY;
 	maxDis = 0;
 	}
-
-
-
-
-
 function UpdatePositionMonster() {
 	var monster, minDistance = Number.POSITIVE_INFINITY, mDist, minX, minY;
-		UpdateBonusPosition();
+	UpdateBonusPosition();
 	//move Monsters
 	for (var i = 0; i < monsterNum; i++) {
 		monster = monsters[i];
@@ -427,7 +418,7 @@ function IsValid(x,y){
 
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
-	var x = GetKeyPressed();
+	let x = GetKeyPressed();
 	if (x == 1) {//ArrowUp
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != 4) {
 			shape.j--;
@@ -479,28 +470,10 @@ function UpdatePosition() {
 	 {
 		 apple[0]=Math.floor(Math.random() * (19));
 		 apple[1]=Math.floor(Math.random() * (9));
-	//	appleEaten=true;
 	 }
-	// else if(!appleShow){
-	// 	appleEaten=false;
-	// 	appleShow=true;
-	// }
-	// if(seconds%10!=0)
-	// {
-	// 	appleEaten=tue;
-	// }
-	// else if(!appleShow){
-	// 	appleEaten=false;
-	// 	appleShow=true;
-	// }
 	//pacman got apple bonus
 	if(shape.i === apple[0] && shape.j === apple[1] && appleEaten==false)
 	{
-		// context.font = "30px Comic Sans MS";
-		// context.fillStyle = "red";
-		// context.textAlign = "center";
-		// context.fillText("Hello World", 30, 30);
-
 		score= score+100;
 		pacLives = pacLives+1;
 		$("#gameData").append('<img src="img/heart.png" height="20" width="20">');
@@ -596,7 +569,7 @@ function keyCodeUp(event) {
 
 function keyCodeDown(event) {
 	var x = event.which;
-	Down=x-32;;
+	Down=x-32;
 }
 
 function keyCodeRight(event) {

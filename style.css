@@ -130,8 +130,11 @@ color: rgb(255, 255, 255);
   }
   
   #about{
-       width: 50%;   
-  }
+       width: 50%;
+      font-style: normal;
+      color: black;
+
+        }
 
 
    ul {
@@ -271,3 +274,8 @@ color: rgb(255, 255, 255);
     padding-inline-start: 40px;
 }
 
+    p{
+    color: aliceblue;
+    font-family: David;
+    font-weight: bold;
+    }

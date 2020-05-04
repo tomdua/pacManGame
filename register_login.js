@@ -104,33 +104,6 @@ if(found === false)
     alert("User name or password incorrect! Try again");
 }
 
-// $("#date").datepicker({
-// showOn: "button",
-// buttonImage: "http://jqueryui.com/demos/images/calendar.gif",
-// buttonImageOnly: true,
-// onSelect: function(dateText, inst) {
-// var datePieces = dateText.split('/');
-// var month = datePieces[0];
-// var day = datePieces[1];
-// var year = datePieces[2];
-
-// $('select#month').val(month);
-// $('select#day').val(day);
-// $('select#year').val(year);
-
-// }
-// });
-
-
-// $( function() {
-//     $( "#date" ).datepicker();
-//   } );
-
-
 function restFunction() {
 document.getElementById("registrationForm").reset();
 }
-
-// function userEmail() {
-//     document.getElementById("userEmail").datepicker();
-// }
