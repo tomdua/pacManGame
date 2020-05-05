@@ -281,21 +281,11 @@ function Draw() {
 				//draw walls
 			} else if (board[i][j] == 4) {
 				context.beginPath();
-				var gradient = context.createLinearGradient(140, 190, 170, 120);
-				gradient.addColorStop('0', "magenta");
-				gradient.addColorStop('0.5' ,"blue");
-				gradient.addColorStop('1', "red");
-
-				context.strokeStyle = gradient;
-				//context.strokeStyle = 'white';
-				context.lineWidth = 5;
-				//context.strokeRect(20, 20, 150, 100);
-
+				context.strokeStyle = 'tomato';
 				context.strokeRect(center.x - 30, center.y - 30, 60, 60);
 				context.fill();
 
 			}// draw apple
-
 			if(apple[0]=== i && apple[1]===j && board[i][j]!=4 && board[i][j]!=2 &&!appleEaten) {
 				var appleImg = new Image();
 				appleImg.src = apple[2];

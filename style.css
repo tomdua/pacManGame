@@ -19,6 +19,8 @@ body {
       box-sizing: border-box;
       position: relative;
       border: 8px  double royalblue;
+      border-radius: 7pt;
+
   }
   
  #app {
@@ -254,6 +256,7 @@ color: rgb(255, 255, 255);
       background-attachment: fixed;
       border:none;
     border-bottom:1px solid whitesmoke;
+
     ;
   }
   input:focus{ 
