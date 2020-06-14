@@ -13,10 +13,10 @@ This game was created as part of the course Development Environments
 
 
 ## Demo
-[PacManGame](https://sise-web-development-environments.github.io/206282477_305069577/)
+[PacManGame](https://tomdua.github.io/pacManGame/)
 
 ## Developers
 
-  * Tom Duany - 206282477
-  * Almog Sarafian - 305069577
+  * Tom Duany
+  * Almog Sarafian
 
